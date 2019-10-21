@@ -15,11 +15,19 @@ class MainActivity : AppCompatActivity() {
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val list = ArrayList<String>()
+        val list = ArrayList<Levels>()
 
-        list.add("toto")
-        list.add("dede")
-        list.add("dzdz")
+        val chal = Challenges("Label", "description")
+        val chalList = ArrayList<Challenges>()
+
+        chalList.add(chal)
+        chalList.add(chal)
+        chalList.add(chal)
+        chalList.add(chal)
+
+        list.add(Levels("1", chalList))
+        list.add(Levels("2", chalList))
+        list.add(Levels("3", chalList))
 
         val adapter = MyRecyclerViewAdapter(list)
 
