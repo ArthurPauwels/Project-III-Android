@@ -12,7 +12,6 @@
         android:minHeight="50dp"
         app:cardCornerRadius="2dp"
         app:cardElevation="2dp"
-        xmlns:android="http://schemas.android.com/apk/res/android"
 
         >
 
@@ -28,22 +27,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="200dp"
-                app:layout_constraintEnd_toStartOf="@+id/text_challenge_name"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/text_challenge_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:layout_width="336dp"
+                android:layout_height="28dp"
+                android:gravity="right"
                 android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox_challenge"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/checkBox_challenge"
-                app:layout_constraintTop_toTopOf="@+id/checkBox_challenge" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
