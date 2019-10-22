@@ -1,17 +1,21 @@
-package com.example.android.projectiii
+package com.example.android.projectiii.mainView
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.security.AccessController.getContext
+import com.example.android.projectiii.Challenges
+import com.example.android.projectiii.Levels
+import com.example.android.projectiii.R
 
-class MyRecyclerViewAdapter(val data: ArrayList<Levels>) : RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
+class MyRecyclerViewAdapter(val data: ArrayList<Levels>, val clickHandler: OnItemClickListener) : RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
+
+    interface OnItemClickListener {
+        fun onItemClick(challenges: Challenges)
+    }
 
     private val viewPool = RecyclerView.RecycledViewPool()
 
@@ -24,7 +28,18 @@ class MyRecyclerViewAdapter(val data: ArrayList<Levels>) : RecyclerView.Adapter<
         val layoutManager = LinearLayoutManager(holder.recyclerViewChallenges.context, RecyclerView.VERTICAL, false)
         layoutManager.initialPrefetchItemCount = item.challenges.size
 
-        val challengeAdapter = SecondRecyclerViewAdapter(item.challenges)
+        val listener = object :
+            SecondRecyclerViewAdapter.OnItemClickListener {
+            override fun onItemClick(challenges: Challenges) {
+                clickHandler.onItemClick(challenges)
+            }
+        }
+
+        val challengeAdapter =
+            SecondRecyclerViewAdapter(
+                item.challenges,
+                listener
+            )
 
         holder.recyclerViewChallenges.layoutManager = layoutManager
         holder.recyclerViewChallenges.adapter = challengeAdapter
