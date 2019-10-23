@@ -1,5 +1,6 @@
 package com.example.android.projectiii
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -17,12 +18,14 @@ class MainActivity : AppCompatActivity() {
 
         val list = ArrayList<Levels>()
 
-        val chal = Challenges("Label", "description")
+        val chal = Challenges("id", "Label", "description")
+        val chal2 = Challenges("id2", "Label2", "description2")
+        val chal3 = Challenges("id3", "Label3", "description3")
         val chalList = ArrayList<Challenges>()
 
         chalList.add(chal)
-        chalList.add(chal)
-        chalList.add(chal)
+        chalList.add(chal2)
+        chalList.add(chal3)
         chalList.add(chal)
 
         list.add(Levels("1", chalList))
@@ -31,7 +34,10 @@ class MainActivity : AppCompatActivity() {
 
         val listener = object : MyRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(challenges: Challenges) {
-                println(challenges.label)
+                val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
+                intent.putExtra("label", challenges.label)
+                intent.putExtra("description", challenges.description)
+                startActivity(intent)
             }
         }
 
