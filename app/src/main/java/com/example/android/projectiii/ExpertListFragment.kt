@@ -30,12 +30,22 @@ class ExpertListFragment : Fragment() {
         val expert3 = Expert("3", "expert3@email.com", "+3133333333", "Expert 3")
         val expert4 = Expert("4", "expert4@email.com", "+3144444444", "Expert 4")
         val expert5 = Expert("5", "expert5@email.com", "+3155555555", "Expert 5")
+        val expert6 = Expert("6", "expert6@email.com", "+3166666666", "Expert 6")
+        val expert7 = Expert("7", "expert7@email.com", "+3177777777", "Expert 7")
+        val expert8 = Expert("8", "expert8@email.com", "+3188888888", "Expert 8")
+        val expert9 = Expert("9", "expert9@email.com", "+3199999999", "Expert 9")
+        val expert10 = Expert("10", "expert10@email.com", "+31101010", "Expert 10")
 
         expertList.add(expert1)
         expertList.add(expert2)
         expertList.add(expert3)
         expertList.add(expert4)
         expertList.add(expert5)
+        expertList.add(expert6)
+        expertList.add(expert7)
+        expertList.add(expert8)
+        expertList.add(expert9)
+        expertList.add(expert10)
 
         val listener = object : ExpertRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(expert: Expert) {
