@@ -13,10 +13,8 @@ import com.example.android.projectiii.R
 class ExpertRecyclerViewAdapter (val data: ArrayList<Expert>, val clickHandler: OnItemClickListener) : RecyclerView.Adapter<ExpertRecyclerViewAdapter.ViewHolder>() {
 
     interface OnItemClickListener{
-        fun onItemClick(experts: Expert)
+        fun onItemClick(expert: Expert)
     }
-
-    private val viewPool = RecyclerView.RecycledViewPool()
 
     override fun getItemCount() = data.size
 
