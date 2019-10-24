@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.projectiii.Challenges
 import com.example.android.projectiii.Expert
 import com.example.android.projectiii.R
 
@@ -24,6 +25,7 @@ class ExpertRecyclerViewAdapter (val data: ArrayList<Expert>, val clickHandler: 
         holder.name.text = item.name
         holder.email.text = item.email
         holder.phone.text = item.phone
+        holder.bind(item,clickHandler)
 
     }
 
@@ -40,5 +42,11 @@ class ExpertRecyclerViewAdapter (val data: ArrayList<Expert>, val clickHandler: 
         val name = itemView.findViewById(R.id.tv_name) as TextView
         val email = itemView.findViewById(R.id.tv_email) as TextView
         val phone = itemView.findViewById(R.id.tv_phone) as TextView
+
+            fun bind(item: Expert, listener: OnItemClickListener) {
+            itemView.setOnClickListener(View.OnClickListener {
+                listener.onItemClick(item)
+            })
+        }
     }
 }
