@@ -1,49 +1,53 @@
 package com.example.android.projectiii
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.android.projectiii.databinding.ActivityMainBinding
-import com.example.android.projectiii.mainView.MyRecyclerViewAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var challengeList: ChallengeListFragment
+    lateinit var expertList: ExpertListFragment
+    lateinit var completedChallenges: CompletedChallengeFragment
+    private val fragmentManager: FragmentManager = supportFragmentManager
+    lateinit var active: Fragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val bottomNavigation : BottomNavigationView = findViewById(R.id.bottom_nav)
+        challengeList = ChallengeListFragment()
+        expertList = ExpertListFragment()
+        completedChallenges = CompletedChallengeFragment()
 
-        val list = ArrayList<Levels>()
+        fragmentManager.beginTransaction().add(R.id.fragment_container, expertList, "3").hide(expertList).commit()
+        fragmentManager.beginTransaction().add(R.id.fragment_container, challengeList, "2").hide(challengeList).commit()
+        fragmentManager.beginTransaction().add(R.id.fragment_container, completedChallenges, "1").commit()
 
-        val chal = Challenges("id", "Label", "description")
-        val chal2 = Challenges("id2", "Label2", "description2")
-        val chal3 = Challenges("id3", "Label3", "description3")
-        val chalList = ArrayList<Challenges>()
+        active = completedChallenges
 
-        chalList.add(chal)
-        chalList.add(chal2)
-        chalList.add(chal3)
-        chalList.add(chal)
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
 
-        list.add(Levels("1", chalList))
-        list.add(Levels("2", chalList))
-        list.add(Levels("3", chalList))
+            when (item.itemId){
+                R.id.completed -> {
+                    fragmentManager.beginTransaction().hide(active).show(completedChallenges).commit()
+                    active = completedChallenges
+                }
 
-        val listener = object : MyRecyclerViewAdapter.OnItemClickListener {
-            override fun onItemClick(challenges: Challenges) {
-                val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
-                intent.putExtra("label", challenges.label)
-                intent.putExtra("description", challenges.description)
-                startActivity(intent)
+                R.id.all -> {
+                    fragmentManager.beginTransaction().hide(active).show(challengeList).commit()
+                    active = challengeList
+                }
+
+                R.id.expert -> {
+                    fragmentManager.beginTransaction().hide(active).show(expertList).commit()
+                    active = expertList
+                }
             }
+            true
         }
-
-        val adapter = MyRecyclerViewAdapter(list, listener)
-
-        binding.currentChallengesList.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        binding.currentChallengesList.adapter = adapter
     }
 }
