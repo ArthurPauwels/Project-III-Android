@@ -3,6 +3,7 @@ package com.example.android.projectiii.Challenge
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -18,21 +19,34 @@ class ChallengeRecyclerViewAdapter (private val data: MutableList<Challenges>, p
 
     override fun onBindViewHolder (holder: ViewHolder, position: Int) {
         val item = data[position]
-        holder.textViewName.text = item.label
+        holder.textChallengeTitle.text = item.title
+        holder.textChallengeDescription.text = item.description
+        holder.textChallengeCoins.text = item.coins.toString()
+        holder.textChallengeTimeLimit.text = item.deadline
+        holder.checkobxChallenge.isChecked = item.isDone
         holder.bind(item, listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.second_item_view, parent, false) as LinearLayout
+        val view = layoutInflater.inflate(R.layout.first_item_view, parent, false) as LinearLayout
         return ViewHolder(view)
     }
 
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textViewName = itemView.findViewById(R.id.text_challenge_name) as TextView
+        val textChallengeTitle = itemView.findViewById(R.id.challengeTitle) as TextView
+        val textChallengeDescription = itemView.findViewById(R.id.challengeDescription) as TextView
+        val textChallengeTimeLimit = itemView.findViewById(R.id.challengeLimitTime) as TextView
+        val textChallengeCoins = itemView.findViewById(R.id.challengeCoins) as TextView
+        val checkobxChallenge = itemView.findViewById(R.id.challengeCheckBox) as CheckBox
 
         fun bind(item: Challenges, listener: OnItemClickListener) {
             itemView.setOnClickListener(View.OnClickListener {
+                if (textChallengeDescription.visibility == View.GONE) {
+                    textChallengeDescription.visibility = View.VISIBLE
+                } else {
+                    textChallengeDescription.visibility = View.GONE
+                }
                 listener.onItemClick(item)
             })
         }
