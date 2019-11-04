@@ -1,4 +1,4 @@
-package com.example.android.projectiii.mainView
+package com.example.android.projectiii.Challenge
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,10 +6,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.projectiii.Challenges
 import com.example.android.projectiii.R
 
-class SecondRecyclerViewAdapter (val data: ArrayList<Challenges>, val listener: OnItemClickListener) : RecyclerView.Adapter<SecondRecyclerViewAdapter.ViewHolder>() {
+class ChallengeRecyclerViewAdapter (private val data: MutableList<Challenges>, private val listener: OnItemClickListener) : RecyclerView.Adapter<ChallengeRecyclerViewAdapter.ViewHolder>() {
 
     interface OnItemClickListener {
         fun onItemClick(challenges: Challenges)

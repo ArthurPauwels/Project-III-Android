@@ -6,7 +6,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ChallengeListFragment">
+        tools:context=".Challenge.ChallengeListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/current_challenges_list"

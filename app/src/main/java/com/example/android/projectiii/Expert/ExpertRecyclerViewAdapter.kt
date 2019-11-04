@@ -1,17 +1,14 @@
-package com.example.android.projectiii.mainView
+package com.example.android.projectiii.Expert
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.projectiii.Challenges
-import com.example.android.projectiii.Expert
 import com.example.android.projectiii.R
 
-class ExpertRecyclerViewAdapter (val data: ArrayList<Expert>, val clickHandler: OnItemClickListener) : RecyclerView.Adapter<ExpertRecyclerViewAdapter.ViewHolder>() {
+class ExpertRecyclerViewAdapter (private val data: MutableList<Expert>, private val clickHandler: OnItemClickListener) : RecyclerView.Adapter<ExpertRecyclerViewAdapter.ViewHolder>() {
 
     interface OnItemClickListener{
         fun onItemClick(expert: Expert)

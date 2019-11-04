@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChallengeActivity" />
-        <activity android:name=".ExpertContactView" />
-        <activity android:name=".ChallengeListFragment"></activity>
+        <activity android:name=".Challenge.ChallengeActivity" />
+        <activity android:name=".Expert.ExpertContactView" />
+        <activity android:name=".Challenge.ChallengeListFragment"></activity>
     </application>
 
 </manifest>
