@@ -32,7 +32,7 @@ class ChallengeListFragment : Fragment() {
             }
         }
 
-        val adapter = ChallengeRecyclerViewAdapter(list, listener)
+        val adapter = ChallengeRecyclerViewAdapter(this.activity!!.applicationContext, list, listener)
 
         binding.currentChallengesList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.currentChallengesList.adapter = adapter

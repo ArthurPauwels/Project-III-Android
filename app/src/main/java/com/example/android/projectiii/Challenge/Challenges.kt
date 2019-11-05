@@ -7,5 +7,6 @@ data class Challenges (
     val isLocked: Boolean,
     val coins: Int,
     val isDone: Boolean,
-    val description: String
+    val description: String,
+    val image: String
 )
