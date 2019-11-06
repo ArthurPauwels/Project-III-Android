@@ -9,11 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.projectiii.Level.LevelMockData
-import com.example.android.projectiii.Level.Levels
 import com.example.android.projectiii.R
 import com.example.android.projectiii.databinding.ChallengeListBinding
-import com.example.android.projectiii.Level.LevelRecyclerViewAdapter
 
 class ChallengeListFragment : Fragment() {
 
@@ -27,18 +24,15 @@ class ChallengeListFragment : Fragment() {
             DataBindingUtil.inflate(inflater,
                 R.layout.challenge_list, container, false)
 
-        val list = LevelMockData().getLevelList()
+        val list = ChallengeMockData().getChallengesList()
 
-        val listener = object : LevelRecyclerViewAdapter.OnItemClickListener {
-            override fun onItemClick(challenges: Challenges) {
-                val intent = Intent(activity, ChallengeActivity::class.java)
-                intent.putExtra("label", challenges.label)
-                intent.putExtra("description", challenges.description)
-                startActivity(intent)
+        val listener = object : ChallengeRecyclerViewAdapter.OnItemClickListener {
+            override fun onItemClick(challenge: Challenges) {
+
             }
         }
 
-        val adapter = LevelRecyclerViewAdapter(list, listener)
+        val adapter = ChallengeRecyclerViewAdapter(this.activity!!.applicationContext, list, listener)
 
         binding.currentChallengesList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.currentChallengesList.adapter = adapter
