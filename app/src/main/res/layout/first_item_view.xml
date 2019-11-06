@@ -123,6 +123,16 @@ is even to prevent falls."
                 card_view:layout_constraintEnd_toEndOf="@+id/challengeLimitTime"
                 card_view:layout_constraintTop_toTopOf="@+id/challengeCoinBox" />
 
+            <ImageView
+                android:id="@+id/challengeLockIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_lock_icon_foreground"
+                card_view:layout_constraintBottom_toBottomOf="@+id/challengeCoinBox"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintHorizontal_bias="0.973"
+                card_view:layout_constraintStart_toEndOf="@+id/challengeCoinBox" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp"

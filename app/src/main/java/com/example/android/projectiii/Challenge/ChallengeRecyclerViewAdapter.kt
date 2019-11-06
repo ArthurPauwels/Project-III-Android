@@ -27,6 +27,14 @@ class ChallengeRecyclerViewAdapter (val context: Context, private val data: Muta
         holder.textChallengeTimeLimit.text = item.deadline
         holder.checkboxChallenge.isChecked = item.isDone
         holder.imageChallenge.setImageResource(context.resources.getIdentifier(item.image, "drawable", context.packageName))
+
+        if (item.isLocked) {
+            holder.checkboxChallenge.visibility = View.GONE
+            holder.lockIconChallenge.visibility = View.VISIBLE
+        } else {
+            holder.checkboxChallenge.visibility = View.VISIBLE
+            holder.lockIconChallenge.visibility = View.GONE
+        }
         holder.bind(item, listener)
     }
 
@@ -43,13 +51,16 @@ class ChallengeRecyclerViewAdapter (val context: Context, private val data: Muta
         val textChallengeCoins = itemView.findViewById(R.id.challengeCoins) as TextView
         val checkboxChallenge = itemView.findViewById(R.id.challengeCheckBox) as CheckBox
         val imageChallenge = itemView.findViewById(R.id.challengeImage) as ImageView
+        val lockIconChallenge = itemView.findViewById(R.id.challengeLockIcon) as ImageView
 
         fun bind(item: Challenges, listener: OnItemClickListener) {
             itemView.setOnClickListener(View.OnClickListener {
-                if (textChallengeDescription.visibility == View.GONE) {
-                    textChallengeDescription.visibility = View.VISIBLE
-                } else {
-                    textChallengeDescription.visibility = View.GONE
+                if (item.isLocked == false) {
+                    if (textChallengeDescription.visibility == View.GONE) {
+                        textChallengeDescription.visibility = View.VISIBLE
+                    } else {
+                        textChallengeDescription.visibility = View.GONE
+                    }
                 }
 
                 listener.onItemClick(item)
