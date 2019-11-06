@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.android.projectiii.Challenge.ChallengeListFragment
+import com.example.android.projectiii.Challenge.CompletedChallengeFragment
+import com.example.android.projectiii.Expert.ExpertListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
