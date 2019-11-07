@@ -1,6 +1,7 @@
 package com.example.android.projectiii.Challenge
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.R
 
-class ChallengeRecyclerViewAdapter (val context: Context, private val data: MutableList<Challenges>, private val listener: OnItemClickListener) : RecyclerView.Adapter<ChallengeRecyclerViewAdapter.ViewHolder>() {
+class ChallengeRecyclerViewAdapter(
+    val context: Context,
+    private val data: MutableList<Challenges>,
+    private val listener: OnItemClickListener
+) : RecyclerView.Adapter<ChallengeRecyclerViewAdapter.ViewHolder>() {
 
     interface OnItemClickListener {
         fun onItemClick(challenges: Challenges)
@@ -19,14 +24,27 @@ class ChallengeRecyclerViewAdapter (val context: Context, private val data: Muta
 
     override fun getItemCount() = data.size
 
-    override fun onBindViewHolder (holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.textChallengeTitle.text = item.title
         holder.textChallengeDescription.text = item.description
         holder.textChallengeCoins.text = item.coins.toString()
         holder.textChallengeTimeLimit.text = item.deadline
         holder.checkboxChallenge.isChecked = item.isDone
-        holder.imageChallenge.setImageResource(context.resources.getIdentifier(item.image, "drawable", context.packageName))
+        holder.imageChallenge.setImageResource(
+            context.resources.getIdentifier(
+                item.image,
+                "drawable",
+                context.packageName
+            )
+        )
+
+        holder.checkboxChallenge.setOnClickListener(View.OnClickListener {
+            if (holder.checkboxChallenge.isChecked){
+                listener.onItemClick(item)
+                holder.checkboxChallenge.isEnabled = false
+            }
+        })
 
         if (item.isLocked) {
             holder.checkboxChallenge.visibility = View.GONE
@@ -35,7 +53,6 @@ class ChallengeRecyclerViewAdapter (val context: Context, private val data: Muta
             holder.checkboxChallenge.visibility = View.VISIBLE
             holder.lockIconChallenge.visibility = View.GONE
         }
-        holder.bind(item, listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,7 +61,7 @@ class ChallengeRecyclerViewAdapter (val context: Context, private val data: Muta
         return ViewHolder(view)
     }
 
-    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textChallengeTitle = itemView.findViewById(R.id.challengeTitle) as TextView
         val textChallengeDescription = itemView.findViewById(R.id.challengeDescription) as TextView
         val textChallengeTimeLimit = itemView.findViewById(R.id.challengeLimitTime) as TextView
