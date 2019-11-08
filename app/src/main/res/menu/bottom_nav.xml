@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Completed"
+        android:title="Challenges"
         android:id="@+id/completed"
         android:icon="@drawable/ic_action_completed"
         />
 
     <item
-        android:title="Challenges"
+        android:title="Locked"
         android:id="@+id/all"
         android:icon="@drawable/ic_action_all"
 

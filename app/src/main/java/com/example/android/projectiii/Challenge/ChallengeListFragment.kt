@@ -30,20 +30,20 @@ class ChallengeListFragment : Fragment() {
 
         val list = ChallengeMockData().getChallengesList()
 
-        employee = Employee("Name", "Email", "123456", 35)
-
         val listener = object : ChallengeRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(challenge: Challenges) {
-                employee.addCoins(challenge.coins)
-                binding.allUserCoins.text = employee.totalCoins.toString()
             }
         }
 
+        val newList: MutableList<Challenges> = mutableListOf()
 
-        binding.allUserCoins.text = employee.totalCoins.toString()
+        for (item in list) {
+            if (item.isLocked) {
+                newList.add(item)
+            }
+        }
 
-
-        val adapter = ChallengeRecyclerViewAdapter(this.activity!!.applicationContext, list, listener)
+        val adapter = ChallengeRecyclerViewAdapter(this.activity!!.applicationContext, newList, listener)
 
         binding.currentChallengesList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.currentChallengesList.adapter = adapter
