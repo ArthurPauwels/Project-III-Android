@@ -1,7 +1,6 @@
 package com.example.android.projectiii.Challenge
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,11 +52,13 @@ class ChallengeRecyclerViewAdapter(
             holder.checkboxChallenge.visibility = View.VISIBLE
             holder.lockIconChallenge.visibility = View.GONE
         }
+
+        holder.bind(item, listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.first_item_view, parent, false) as LinearLayout
+        val view = layoutInflater.inflate(R.layout.challenge_card, parent, false) as LinearLayout
         return ViewHolder(view)
     }
 
@@ -72,6 +73,8 @@ class ChallengeRecyclerViewAdapter(
 
         fun bind(item: Challenges, listener: OnItemClickListener) {
             itemView.setOnClickListener(View.OnClickListener {
+                print("titititi")
+                print(item.isLocked)
                 if (item.isLocked == false) {
                     if (textChallengeDescription.visibility == View.GONE) {
                         textChallengeDescription.visibility = View.VISIBLE

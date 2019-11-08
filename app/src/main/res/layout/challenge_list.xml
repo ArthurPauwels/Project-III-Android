@@ -3,58 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".Challenge.ChallengeListFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/challengeCoinBox"
-            android:layout_width="89dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/rounded_challenge_coins"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/challengeCoinImage"
-                android:layout_width="32dp"
-                android:layout_height="29dp"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/coins"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
             <TextView
-                android:id="@+id/allUserCoins"
-                android:layout_width="wrap_content"
+                android:id="@+id/titleLockedChallenges"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="3dp"
-                android:text="123"
-                android:textColor="#565656"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/challengeCoinImage"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="25" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
+                android:textSize="32sp"
+                android:text="Track Details" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/current_challenges_list"
             android:layout_width="397dp"
-            android:layout_height="504dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/challengeCoinBox" />
+            android:layout_marginEnd="8dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
