@@ -5,14 +5,14 @@
 
     <fragment
         android:id="@+id/current_challenges"
-        android:name="com.example.android.projectiii.Challenge.ChallengeListFragment"
+        android:name="com.example.android.projectiii.challenge.ChallengeListFragment"
         android:label="ChallengeListFragment" />
     <fragment
         android:id="@+id/lock_challenges"
-        android:name="com.example.android.projectiii.Challenge.CompletedChallengeFragment"
+        android:name="com.example.android.projectiii.challenge.CompletedChallengeFragment"
         android:label="CompletedChallengeFragment" />
     <fragment
         android:id="@+id/expert_list"
-        android:name="com.example.android.projectiii.Expert.ExpertListFragment"
+        android:name="com.example.android.projectiii.expert.ExpertListFragment"
         android:label="ExpertListFragment" />
 </navigation>

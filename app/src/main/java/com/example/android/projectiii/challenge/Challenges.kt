@@ -1,4 +1,4 @@
-package com.example.android.projectiii.Challenge
+package com.example.android.projectiii.challenge
 
 data class Challenges (
     val id: String,

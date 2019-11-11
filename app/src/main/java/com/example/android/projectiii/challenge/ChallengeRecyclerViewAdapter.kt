@@ -1,4 +1,4 @@
-package com.example.android.projectiii.Challenge
+package com.example.android.projectiii.challenge
 
 import android.content.Context
 import android.view.LayoutInflater

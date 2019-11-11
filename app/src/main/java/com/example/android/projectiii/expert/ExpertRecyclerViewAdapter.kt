@@ -1,4 +1,4 @@
-package com.example.android.projectiii.Expert
+package com.example.android.projectiii.expert
 
 import android.view.LayoutInflater
 import android.view.View

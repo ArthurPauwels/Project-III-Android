@@ -1,4 +1,4 @@
-package com.example.android.projectiii.Challenge
+package com.example.android.projectiii.challenge
 
 class ChallengeMockData {
     fun getChallengesList(): MutableList<Challenges> {
