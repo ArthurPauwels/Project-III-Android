@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.employee.Employee
 import com.example.android.projectiii.R
+import com.example.android.projectiii.database.ChallengeDatabase
 import com.example.android.projectiii.databinding.FragmentCurrentChallengeBinding
 
 class ChallengeListFragment : Fragment() {
@@ -25,8 +26,7 @@ class ChallengeListFragment : Fragment() {
             DataBindingUtil.inflate(inflater,
                 R.layout.fragment_current_challenge, container, false)
 
-        val list = ChallengeMockData().getChallengesList()
-
+        val list = mutableListOf<Challenges>()
         employee = Employee("Name", "Email", "123456", 35)
 
         val listener = object : ChallengeRecyclerViewAdapter.OnItemClickListener {
