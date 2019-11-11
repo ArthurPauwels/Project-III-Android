@@ -73,8 +73,6 @@ class ChallengeRecyclerViewAdapter(
 
         fun bind(item: Challenges, listener: OnItemClickListener) {
             itemView.setOnClickListener(View.OnClickListener {
-                print("titititi")
-                print(item.isLocked)
                 if (item.isLocked == false) {
                     if (textChallengeDescription.visibility == View.GONE) {
                         textChallengeDescription.visibility = View.VISIBLE

@@ -17,32 +17,26 @@ class CompletedChallengeFragment : Fragment() {
     private lateinit var employee: Employee
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         super.onCreateView(inflater, container, savedInstanceState)
-        val binding: FragmentCurrentChallengeBinding =
+        val binding: ChallengeListBinding =
             DataBindingUtil.inflate(inflater,
-                R.layout.fragment_current_challenge, container, false)
+                R.layout.challenge_list, container, false)
 
         val list = ChallengeMockData().getChallengesList()
 
-        employee = Employee("Name", "Email", "123456", 35)
-
         val listener = object : ChallengeRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(challenge: Challenges) {
-                employee.addCoins(challenge.coins)
-                binding.allUserCoins.text = employee.totalCoins.toString()
             }
         }
-
-        binding.allUserCoins.text = employee.totalCoins.toString()
 
         val newList: MutableList<Challenges> = mutableListOf()
 
         for (item in list) {
-            if (item.isLocked == false) {
+            if (item.isLocked) {
                 newList.add(item)
             }
         }
@@ -54,4 +48,5 @@ class CompletedChallengeFragment : Fragment() {
 
         return binding.root
     }
+
 }
