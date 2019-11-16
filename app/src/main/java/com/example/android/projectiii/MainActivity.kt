@@ -3,6 +3,7 @@ package com.example.android.projectiii
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.Navigation
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,7 +18,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupNavigation() {
         val navController = Navigation.findNavController(this, R.id.main_fragment_container)
-        setupActionBarWithNavController(this, navController)
+        val appBarConfiguration = AppBarConfiguration.Builder(
+            R.id.current_challenges,
+            R.id.lock_challenges,
+            R.id.expert_list
+        ).build()
+        setupActionBarWithNavController(this, navController, appBarConfiguration)
         NavigationUI.setupWithNavController(bottom_nav, navController)
     }
 

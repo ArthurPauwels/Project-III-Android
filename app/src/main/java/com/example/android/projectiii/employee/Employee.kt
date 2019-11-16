@@ -1,10 +1,13 @@
 package com.example.android.projectiii.employee
 
-import android.util.Log
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-class Employee (val name: String, val email: String, val password: String, var totalCoins: Int){
-    fun addCoins(nrOfCoins: Int){
-        totalCoins += nrOfCoins
-        Log.d("Check", totalCoins.toString())
-    }
-}
+@Entity(tableName = "employee")
+data class Employee(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0L,
+    var name: String,
+    var email: String,
+    var totalCoins: Int
+)

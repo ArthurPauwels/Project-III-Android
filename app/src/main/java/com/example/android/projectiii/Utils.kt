@@ -1,6 +1,11 @@
 package com.example.android.projectiii
 
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)
+@BindingAdapter("android:src")
+fun setImageViewResource(imageView: ImageView, resource: Int) {
+    imageView.setImageResource(resource)
+}

@@ -1,88 +1,52 @@
 package com.example.android.projectiii.challenge
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.projectiii.R
+import com.example.android.projectiii.databinding.ChallengeCardBinding
+import com.example.android.projectiii.employee.EmployeeViewModel
 
-class ChallengeRecyclerViewAdapter(
-    val context: Context,
-    private val data: MutableList<Challenges>,
-    private val listener: OnItemClickListener
-) : RecyclerView.Adapter<ChallengeRecyclerViewAdapter.ViewHolder>() {
+class ChallengeRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel) : ListAdapter<Challenges, RecyclerView.ViewHolder>(ChallengeDiffCallback()) {
 
     interface OnItemClickListener {
         fun onItemClick(challenges: Challenges)
     }
 
-    override fun getItemCount() = data.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
-        holder.textChallengeTitle.text = item.title
-        holder.textChallengeDescription.text = item.description
-        holder.textChallengeCoins.text = item.coins.toString()
-        holder.textChallengeTimeLimit.text = item.deadline
-        holder.checkboxChallenge.isChecked = item.isDone
-        holder.imageChallenge.setImageResource(
-            context.resources.getIdentifier(
-                item.image,
-                "drawable",
-                context.packageName
-            )
-        )
-
-        holder.checkboxChallenge.setOnClickListener(View.OnClickListener {
-            if (holder.checkboxChallenge.isChecked){
-                listener.onItemClick(item)
-                holder.checkboxChallenge.isEnabled = false
-            }
-        })
-
-        if (item.isLocked) {
-            holder.checkboxChallenge.visibility = View.GONE
-            holder.lockIconChallenge.visibility = View.VISIBLE
-        } else {
-            holder.checkboxChallenge.visibility = View.VISIBLE
-            holder.lockIconChallenge.visibility = View.GONE
-        }
-
-        holder.bind(item, listener)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val challenge = getItem(position)
+        (holder as ViewHolder).bind(challenge, employeeViewModel)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.challenge_card, parent, false) as LinearLayout
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return ViewHolder(ChallengeCardBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        ))
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textChallengeTitle = itemView.findViewById(R.id.challengeTitle) as TextView
-        val textChallengeDescription = itemView.findViewById(R.id.challengeDescription) as TextView
-        val textChallengeTimeLimit = itemView.findViewById(R.id.challengeLimitTime) as TextView
-        val textChallengeCoins = itemView.findViewById(R.id.challengeCoins) as TextView
-        val checkboxChallenge = itemView.findViewById(R.id.challengeCheckBox) as CheckBox
-        val imageChallenge = itemView.findViewById(R.id.challengeImage) as ImageView
-        val lockIconChallenge = itemView.findViewById(R.id.challengeLockIcon) as ImageView
-
-        fun bind(item: Challenges, listener: OnItemClickListener) {
-            itemView.setOnClickListener(View.OnClickListener {
-                if (item.isLocked == false) {
-                    if (textChallengeDescription.visibility == View.GONE) {
-                        textChallengeDescription.visibility = View.VISIBLE
-                    } else {
-                        textChallengeDescription.visibility = View.GONE
-                    }
+    class ViewHolder(val binding: ChallengeCardBinding) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.setClickListener {
+                binding.item?.let { challenge ->
+                    challenge.isOpen = !challenge.isOpen
+                    binding.item = challenge
                 }
-
-                listener.onItemClick(item)
-            })
+            }
         }
+        fun bind(item: Challenges, employeeViewModel: EmployeeViewModel) {
+            binding.item = item
+            binding.employeeViewModel = employeeViewModel
+            binding.executePendingBindings()
+        }
+    }
+}
+
+private class ChallengeDiffCallback : DiffUtil.ItemCallback<Challenges>() {
+    override fun areItemsTheSame(oldItem: Challenges, newItem: Challenges): Boolean {
+        return oldItem.id == newItem.id
+    }
+    override fun areContentsTheSame(oldItem: Challenges, newItem: Challenges): Boolean {
+        return oldItem == newItem
     }
 }

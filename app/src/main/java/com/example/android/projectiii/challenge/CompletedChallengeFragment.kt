@@ -25,7 +25,7 @@ class CompletedChallengeFragment : Fragment() {
             DataBindingUtil.inflate(inflater,
                 R.layout.challenge_list, container, false)
 
-        val list = ChallengeMockData().getChallengesList()
+        val list = mutableListOf<Challenges>()
 
         val listener = object : ChallengeRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(challenge: Challenges) {
@@ -39,11 +39,6 @@ class CompletedChallengeFragment : Fragment() {
                 newList.add(item)
             }
         }
-
-        val adapter = ChallengeRecyclerViewAdapter(this.activity!!.applicationContext, newList, listener)
-
-        binding.currentChallengesList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        binding.currentChallengesList.adapter = adapter
 
         return binding.root
     }

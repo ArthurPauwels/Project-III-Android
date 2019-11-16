@@ -13,5 +13,6 @@ data class Challenges (
     val coins: Int,
     val isDone: Boolean,
     val description: String,
-    val image: String
+    val image: Int,
+    var isOpen: Boolean = false
 )

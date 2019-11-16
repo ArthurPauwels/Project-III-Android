@@ -35,6 +35,14 @@ dependencies {
     implementation "androidx.core:core-ktx:$core_version"
     implementation "androidx.legacy:legacy-support-v4:$legacy_version"
 
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc01"
+
+    // Lifecycles
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
     // Test
     testImplementation "junit:junit:$version_junit"
     androidTestImplementation "androidx.test.ext:junit:$test_version"
