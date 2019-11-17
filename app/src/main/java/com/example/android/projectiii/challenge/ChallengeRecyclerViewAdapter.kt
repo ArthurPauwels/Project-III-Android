@@ -10,12 +10,9 @@ import com.example.android.projectiii.employee.EmployeeViewModel
 
 class ChallengeRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel) : ListAdapter<Challenges, RecyclerView.ViewHolder>(ChallengeDiffCallback()) {
 
-    interface OnItemClickListener {
-        fun onItemClick(challenges: Challenges)
-    }
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val challenge = getItem(position)
+
         (holder as ViewHolder).bind(challenge, employeeViewModel)
     }
 
@@ -34,6 +31,7 @@ class ChallengeRecyclerViewAdapter(private val employeeViewModel: EmployeeViewMo
                 }
             }
         }
+
         fun bind(item: Challenges, employeeViewModel: EmployeeViewModel) {
             binding.item = item
             binding.employeeViewModel = employeeViewModel

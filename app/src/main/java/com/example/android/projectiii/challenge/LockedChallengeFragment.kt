@@ -1,12 +1,11 @@
 package com.example.android.projectiii.challenge
 
 import android.os.Bundle
-import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,24 +15,27 @@ import com.example.android.projectiii.R
 import com.example.android.projectiii.challenge.viewmodel.ChallengeViewModel
 import com.example.android.projectiii.challenge.viewmodel.ChallengeViewModelFactory
 import com.example.android.projectiii.database.ProjectDatabase
+import com.example.android.projectiii.databinding.ChallengeListBinding
 import com.example.android.projectiii.databinding.FragmentCurrentChallengeBinding
 import com.example.android.projectiii.employee.EmployeeRepository
 import com.example.android.projectiii.employee.EmployeeViewModel
 import com.example.android.projectiii.employee.EmployeeViewModelFactory
 
-class ChallengeListFragment : Fragment() {
-    private lateinit var challengeViewModel: ChallengeViewModel
+class LockedChallengeFragment : Fragment() {
+    private lateinit var employee: Employee
     private lateinit var employeeViewModel: EmployeeViewModel
-    private lateinit var binding: FragmentCurrentChallengeBinding
+    private lateinit var binding: ChallengeListBinding
+    private lateinit var challengeViewModel: ChallengeViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_current_challenge,
+            R.layout.challenge_list,
             container,
             false
         )
@@ -50,11 +52,11 @@ class ChallengeListFragment : Fragment() {
                 EmployeeRepository(employeeDao)
             )
 
-        challengeViewModel = ViewModelProviders.of(this, challengeViewModelFactory).get(ChallengeViewModel::class.java)
-        employeeViewModel = ViewModelProviders.of(this, employeeViewModelFactory).get(EmployeeViewModel::class.java)
+        challengeViewModel = ViewModelProviders.of(this, challengeViewModelFactory).get(
+            ChallengeViewModel::class.java)
+        employeeViewModel = ViewModelProviders.of(this, employeeViewModelFactory).get(
+            EmployeeViewModel::class.java)
         binding.lifecycleOwner = this
-
-        binding.employeeViewModel = employeeViewModel
 
         val adapter = ChallengeRecyclerViewAdapter(employeeViewModel)
 
@@ -62,15 +64,11 @@ class ChallengeListFragment : Fragment() {
             val newList: MutableList<Challenges> = mutableListOf()
 
             for (challenge in listChallenges) {
-                if (!challenge.isLocked) {
+                if (challenge.isLocked) {
                     newList.add(challenge)
                 }
             }
             adapter.submitList(newList)
-        })
-
-        employeeViewModel.isUpdated.observe(this, Observer { isUpdated ->
-            binding.invalidateAll()
         })
 
         binding.currentChallengesList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
@@ -78,4 +76,5 @@ class ChallengeListFragment : Fragment() {
 
         return binding.root
     }
+
 }

@@ -9,7 +9,7 @@
         android:label="ChallengeListFragment" />
     <fragment
         android:id="@+id/lock_challenges"
-        android:name="com.example.android.projectiii.challenge.CompletedChallengeFragment"
+        android:name="com.example.android.projectiii.challenge.LockedChallengeFragment"
         android:label="CompletedChallengeFragment" />
     <fragment
         android:id="@+id/expert_list"
