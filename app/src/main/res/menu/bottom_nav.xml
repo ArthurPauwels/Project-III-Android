@@ -3,20 +3,20 @@
 
     <item
         android:title="Challenges"
-        android:id="@+id/completed"
+        android:id="@+id/current_challenges"
         android:icon="@drawable/ic_action_completed"
         />
 
     <item
         android:title="Locked"
-        android:id="@+id/all"
+        android:id="@+id/lock_challenges"
         android:icon="@drawable/ic_action_all"
 
         />
 
     <item
         android:title="Expert"
-        android:id="@+id/expert"
+        android:id="@+id/expert_list"
         android:icon="@drawable/ic_action_expert" />
 
 </menu>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation"
+    app:startDestination="@+id/current_challenges">
+
+    <fragment
+        android:id="@+id/current_challenges"
+        android:name="com.example.android.projectiii.challenge.ChallengeListFragment"
+        android:label="ChallengeListFragment" />
+    <fragment
+        android:id="@+id/lock_challenges"
+        android:name="com.example.android.projectiii.challenge.LockedChallengeFragment"
+        android:label="CompletedChallengeFragment" />
+    <fragment
+        android:id="@+id/expert_list"
+        android:name="com.example.android.projectiii.expert.ExpertListFragment"
+        android:label="ExpertListFragment" />
+</navigation>
