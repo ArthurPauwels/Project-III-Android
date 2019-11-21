@@ -25,6 +25,9 @@ abstract class ProjectDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): ProjectDatabase {
             synchronized(this) {
+
+                context.deleteDatabase("challenge_database")
+
                 var instance = INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
