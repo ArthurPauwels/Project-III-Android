@@ -19,8 +19,9 @@ class MainActivity : AppCompatActivity() {
     private fun setupNavigation() {
         val navController = Navigation.findNavController(this, R.id.main_fragment_container)
         val appBarConfiguration = AppBarConfiguration.Builder(
-            R.id.current_challenges,
             R.id.lock_challenges,
+            R.id.current_tracks,
+            R.id.current_challenges,
             R.id.expert_list
         ).build()
         setupActionBarWithNavController(this, navController, appBarConfiguration)

@@ -1,4 +1,4 @@
-package com.example.android.projectiii.challenge
+package com.example.android.projectiii.track
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,18 +11,16 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.R
-import com.example.android.projectiii.challenge.viewmodel.ChallengeViewModel
-import com.example.android.projectiii.challenge.viewmodel.ChallengeViewModelFactory
 import com.example.android.projectiii.database.ProjectDatabase
-import com.example.android.projectiii.databinding.FragmentCurrentChallengeBinding
+import com.example.android.projectiii.databinding.FragmentTracksBinding
 import com.example.android.projectiii.employee.EmployeeRepository
 import com.example.android.projectiii.employee.EmployeeViewModel
 import com.example.android.projectiii.employee.EmployeeViewModelFactory
 
-class ChallengeListFragment : Fragment() {
-    private lateinit var challengeViewModel: ChallengeViewModel
+class TracksListFragment : Fragment() {
+    private lateinit var trackViewModel: TrackViewModel
     private lateinit var employeeViewModel: EmployeeViewModel
-    private lateinit var binding: FragmentCurrentChallengeBinding
+    private lateinit var binding: FragmentTracksBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,48 +29,47 @@ class ChallengeListFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_current_challenge,
+            R.layout.fragment_tracks,
             container,
             false
         )
 
         val instance = ProjectDatabase.getInstance(requireContext())
-        val challengeDao = instance.challengeDao
+        val trackDao = instance.trackDao
+        //val challengeDao = instance.challengeDao
         val employeeDao = instance.employeeDao
-        val challengeViewModelFactory =
-            ChallengeViewModelFactory(
-                ChallengeRepository(challengeDao)
+        val trackViewModelFactory =
+            TrackViewModelFactory(
+                TrackRepository(trackDao)
             )
         val employeeViewModelFactory =
             EmployeeViewModelFactory(
                 EmployeeRepository(employeeDao)
             )
 
-        challengeViewModel = ViewModelProviders.of(this, challengeViewModelFactory).get(ChallengeViewModel::class.java)
-        employeeViewModel = ViewModelProviders.of(this, employeeViewModelFactory).get(EmployeeViewModel::class.java)
+        trackViewModel = ViewModelProviders.of(this, trackViewModelFactory).get(
+            TrackViewModel::class.java
+        )
+        employeeViewModel = ViewModelProviders.of(this, employeeViewModelFactory).get(
+            EmployeeViewModel::class.java
+        )
         binding.lifecycleOwner = this
 
         binding.employeeViewModel = employeeViewModel
 
-        val adapter = ChallengeRecyclerViewAdapter(employeeViewModel)
+        val adapter = TrackRecyclerViewAdapter(employeeViewModel)
 
-        challengeViewModel.challengeList.observe(this, Observer { listChallenges ->
-            val newList: MutableList<Challenge> = mutableListOf()
-
-            for (challenge in listChallenges) {
-                if (!challenge.isLocked) {
-                    newList.add(challenge)
-                }
-            }
-            adapter.submitList(newList)
+        trackViewModel.trackList.observe(this, Observer { listTracks ->
+            adapter.submitList(listTracks)
         })
 
         employeeViewModel.isUpdated.observe(this, Observer { isUpdated ->
             binding.invalidateAll()
         })
 
-        binding.currentChallengesList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        binding.currentChallengesList.adapter = adapter
+        binding.currentTracksList.layoutManager =
+            LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        binding.currentTracksList.adapter = adapter
 
         return binding.root
     }

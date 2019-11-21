@@ -1,17 +1,16 @@
 package com.example.android.projectiii.challenge.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.projectiii.challenge.ChallengeRepository
-import com.example.android.projectiii.challenge.Challenges
+import com.example.android.projectiii.challenge.Challenge
 import kotlinx.coroutines.launch
 
 class ChallengeViewModel(private val challengeRepository: ChallengeRepository) : ViewModel() {
-    private var _challenges = MutableLiveData<List<Challenges>>()
-    val challengesList: LiveData<List<Challenges>>
+    private var _challenges = MutableLiveData<List<Challenge>>()
+    val challengeList: LiveData<List<Challenge>>
         get() = _challenges
 
     init {

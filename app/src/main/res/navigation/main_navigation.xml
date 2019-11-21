@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation"
-    app:startDestination="@+id/current_challenges">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@+id/current_tracks">
 
+    <fragment
+        android:id="@+id/current_tracks"
+        android:name="com.example.android.projectiii.track.TracksListFragment"
+        android:label="TracksListFragment" />
     <fragment
         android:id="@+id/current_challenges"
         android:name="com.example.android.projectiii.challenge.ChallengeListFragment"

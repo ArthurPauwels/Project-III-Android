@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.databinding.ChallengeCardBinding
 import com.example.android.projectiii.employee.EmployeeViewModel
 
-class ChallengeRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel) : ListAdapter<Challenges, RecyclerView.ViewHolder>(ChallengeDiffCallback()) {
+class ChallengeRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel) : ListAdapter<Challenge, RecyclerView.ViewHolder>(ChallengeDiffCallback()) {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val challenge = getItem(position)
@@ -32,7 +32,7 @@ class ChallengeRecyclerViewAdapter(private val employeeViewModel: EmployeeViewMo
             }
         }
 
-        fun bind(item: Challenges, employeeViewModel: EmployeeViewModel) {
+        fun bind(item: Challenge, employeeViewModel: EmployeeViewModel) {
             binding.item = item
             binding.employeeViewModel = employeeViewModel
             binding.executePendingBindings()
@@ -40,11 +40,11 @@ class ChallengeRecyclerViewAdapter(private val employeeViewModel: EmployeeViewMo
     }
 }
 
-private class ChallengeDiffCallback : DiffUtil.ItemCallback<Challenges>() {
-    override fun areItemsTheSame(oldItem: Challenges, newItem: Challenges): Boolean {
+private class ChallengeDiffCallback : DiffUtil.ItemCallback<Challenge>() {
+    override fun areItemsTheSame(oldItem: Challenge, newItem: Challenge): Boolean {
         return oldItem.id == newItem.id
     }
-    override fun areContentsTheSame(oldItem: Challenges, newItem: Challenges): Boolean {
+    override fun areContentsTheSame(oldItem: Challenge, newItem: Challenge): Boolean {
         return oldItem == newItem
     }
 }
