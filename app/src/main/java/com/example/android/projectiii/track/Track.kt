@@ -14,7 +14,11 @@ data class Track(
     var challenges: List<Challenge>,
     var currentChallenge: Long = 0L
 ) {
-    fun test(): Challenge? {
-            return challenges.find { x -> x.id == currentChallenge }
+    fun test(): Challenge {
+        var x = challenges.find { x -> x.id == currentChallenge }
+        if (x === null) {
+            return challenges[0]
+        }
+        return  x;
     }
 }

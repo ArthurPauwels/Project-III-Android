@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.projectiii.databinding.ChallengeCardBinding
+import com.example.android.projectiii.databinding.TrackCardBinding
 import com.example.android.projectiii.employee.EmployeeViewModel
 
 class TrackRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel): ListAdapter<Track, RecyclerView.ViewHolder>(TrackDiffCallback()) {
@@ -17,16 +17,16 @@ class TrackRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
-            ChallengeCardBinding.inflate(
+            TrackCardBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             ))
     }
 
-    class ViewHolder(val binding: ChallengeCardBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: TrackCardBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener {
-                binding.item?.let { track ->
-                    track.isOpen = !track.isOpen
+                    binding.item?.let { track ->
+                    //navigatetotrack
                     binding.item = track
                 }
             }

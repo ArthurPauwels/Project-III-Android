@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="item"
+            type="com.example.android.projectiii.challenge.Challenge" />
+
+        <variable
+            name="employeeViewModel"
+            type="com.example.android.projectiii.employee.EmployeeViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="#e5e5e5"
+            app:cardCornerRadius="15dp"
+            card_view:cardUseCompatPadding="true"
+            android:onClick="@{clickListener}"
+            card_view:cardElevation="2dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/challengeImage"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    tools:src="@drawable/brain"
+                    android:src="@{item.image}"
+                    app:civ_border_color="#FF46CE32"
+                    app:civ_border_width="5dp"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+
+                <TextView
+                    android:id="@+id/challengeTitle"
+                    android:layout_width="280dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{item.title}"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toEndOf="@+id/challengeImage"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    tools:text="Run 5km a day" />
+
+                <TextView
+                    android:id="@+id/challengeLimitTime"
+                    android:layout_width="280dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@{item.deadline}"
+                    card_view:layout_constraintEnd_toEndOf="@+id/challengeTitle"
+                    card_view:layout_constraintHorizontal_bias="0.0"
+                    card_view:layout_constraintStart_toStartOf="@+id/challengeTitle"
+                    card_view:layout_constraintTop_toBottomOf="@+id/challengeTitle"
+                    tools:text="today is your last day" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/challengeCoinBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_challenge_coins"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintStart_toStartOf="@+id/challengeImage"
+                    card_view:layout_constraintTop_toBottomOf="@+id/challengeImage">
+
+                    <ImageView
+                        android:id="@+id/challengeCoinImage"
+                        android:layout_width="32dp"
+                        android:layout_height="29dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/coins"
+                        card_view:layout_constraintBottom_toBottomOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/challengeCoins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="@{String.valueOf(item.coins)}"
+                        android:textColor="#565656"
+                        card_view:layout_constraintBottom_toBottomOf="parent"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintHorizontal_bias="1.0"
+                        card_view:layout_constraintStart_toEndOf="@+id/challengeCoinImage"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        tools:text="25" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <CheckBox
+                    android:id="@+id/challengeCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#000000"
+                    android:onClick="@{() -> employeeViewModel.addCoins(item.coins)}"
+                    android:visibility="@{item.locked ? View.GONE : View.VISIBLE}"
+                    card_view:layout_constraintEnd_toEndOf="@+id/challengeLimitTime"
+                    card_view:layout_constraintTop_toTopOf="@+id/challengeCoinBox" />
+
+                <ImageView
+                    android:id="@+id/challengeLockIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:visibility="@{item.locked ? View.VISIBLE : View.GONE}"
+                    app:srcCompat="@drawable/ic_lock_icon_foreground"
+                    card_view:layout_constraintBottom_toBottomOf="@+id/challengeCoinBox"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintHorizontal_bias="0.973"
+                    card_view:layout_constraintStart_toEndOf="@+id/challengeCoinBox" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    card_view:layout_constraintTop_toBottomOf="@+id/challengeCoinBox"
+                    tools:layout_editor_absoluteX="86dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</layout>
