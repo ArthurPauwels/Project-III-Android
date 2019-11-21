@@ -2,6 +2,8 @@ package com.example.android.projectiii.track
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import com.example.android.projectiii.R
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +28,7 @@ class TrackRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel)
         init {
             binding.setClickListener {
                     binding.item?.let { track ->
-                    //navigatetotrack
+                    it.findNavController().navigate(R.id.action_current_tracks_to_track_challenges )
                     binding.item = track
                 }
             }
