@@ -13,7 +13,9 @@
         <variable
             name="item"
             type="com.example.android.projectiii.challenge.Challenge" />
-
+        <variable
+            name="item2"
+            type="com.example.android.projectiii.track.Track" />
         <variable
             name="employeeViewModel"
             type="com.example.android.projectiii.employee.EmployeeViewModel" />

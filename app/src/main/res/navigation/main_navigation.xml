@@ -9,13 +9,17 @@
         android:name="com.example.android.projectiii.track.TracksListFragment"
         android:label="TracksListFragment" >
         <action
-            android:id="@+id/action_current_tracks_to_track_challenges"
-            app:destination="@id/track_challenges" />
+            android:id="@+id/action_current_tracks_to_current_track"
+            app:destination="@id/current_track" />
     </fragment>
     <fragment
-        android:id="@+id/track_challenges"
-        android:name="com.example.android.projectiii.track.TracksListFragment"
-        android:label="TracksListFragment" />
+        android:id="@+id/current_track"
+        android:name="com.example.android.projectiii.track.TrackFragment"
+        android:label="TrackFragment">
+        <argument
+            android:name="trackId"
+            app:argType="long" />
+    </fragment>
     <fragment
         android:id="@+id/current_challenges"
         android:name="com.example.android.projectiii.challenge.ChallengeListFragment"
