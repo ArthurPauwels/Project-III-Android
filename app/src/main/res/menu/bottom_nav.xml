@@ -2,19 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Locked"
-        android:id="@+id/lock_challenges"
-        android:icon="@drawable/ic_action_all"
-        />
-    <item
         android:title="Tracks"
         android:id="@+id/current_tracks"
         android:icon="@drawable/ic_action_all"
-        />
-    <item
-        android:title="Challenges"
-        android:id="@+id/current_challenges"
-        android:icon="@drawable/ic_action_completed"
         />
     <item
         android:title="Expert"

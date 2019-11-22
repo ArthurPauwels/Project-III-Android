@@ -15,10 +15,6 @@ data class Track(
     var currentChallenge: Long = 0L
 ) {
     fun test(): Challenge {
-        var x = challenges.find { x -> x.id == currentChallenge }
-        if (x === null) {
-            return challenges[0]
-        }
-        return  x;
+        return challenges[currentChallenge.toInt()]
     }
 }

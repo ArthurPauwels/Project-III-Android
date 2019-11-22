@@ -9,7 +9,6 @@
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
-
         <variable
             name="item"
             type="com.example.android.projectiii.challenge.Challenge" />
@@ -125,7 +124,9 @@
                     android:layout_height="wrap_content"
                     android:buttonTint="#000000"
                     android:onClick="@{() -> employeeViewModel.addCoins(item.coins)}"
-                    android:visibility="@{item.locked ? View.GONE : View.VISIBLE}"
+                    android:checked="@{item.isDone ? true : false}"
+                    android:enabled="@{item.isDone ? false : true}"
+                    android:visibility="@{item.isDone ? View.GONE : View.VISIBLE}"
                     card_view:layout_constraintEnd_toEndOf="@+id/challengeLimitTime"
                     card_view:layout_constraintTop_toTopOf="@+id/challengeCoinBox" />
 
@@ -133,7 +134,7 @@
                     android:id="@+id/challengeLockIcon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:visibility="@{item.locked ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{item.isDone ? View.VISIBLE : View.GONE}"
                     app:srcCompat="@drawable/ic_lock_icon_foreground"
                     card_view:layout_constraintBottom_toBottomOf="@+id/challengeCoinBox"
                     card_view:layout_constraintEnd_toEndOf="parent"

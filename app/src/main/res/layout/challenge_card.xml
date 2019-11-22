@@ -140,22 +140,12 @@
                         tools:text="25" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <CheckBox
-                    android:id="@+id/challengeCheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="#000000"
-                    android:onClick="@{() -> employeeViewModel.addCoins(item.coins)}"
-                    android:visibility="@{item.locked ? View.GONE : View.VISIBLE}"
-                    card_view:layout_constraintEnd_toEndOf="@+id/challengeLimitTime"
-                    card_view:layout_constraintTop_toTopOf="@+id/challengeCoinBox" />
-
+                
                 <ImageView
                     android:id="@+id/challengeLockIcon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:visibility="@{item.locked ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{item.isDone ? View.VISIBLE : View.GONE}"
                     app:srcCompat="@drawable/ic_lock_icon_foreground"
                     card_view:layout_constraintBottom_toBottomOf="@+id/challengeCoinBox"
                     card_view:layout_constraintEnd_toEndOf="parent"

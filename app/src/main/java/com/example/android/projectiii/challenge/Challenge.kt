@@ -11,8 +11,12 @@ data class Challenge (
     val deadline: String,
     val isLocked: Boolean,
     val coins: Int,
-    val isDone: Boolean,
+    var isDone: Boolean,
     val description: String,
     val image: Int,
     var isOpen: Boolean = false
-)
+) {
+    fun  complete() {
+        isDone = true;
+    }
+}

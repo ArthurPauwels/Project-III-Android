@@ -31,5 +31,23 @@
     <fragment
         android:id="@+id/expert_list"
         android:name="com.example.android.projectiii.expert.ExpertListFragment"
-        android:label="ExpertListFragment" />
+        android:label="ExpertListFragment" >
+        <action
+            android:id="@+id/action_expert_list_to_expertContactView"
+            app:destination="@id/expertContactView" />
+    </fragment>
+    <activity
+        android:id="@+id/expertContactView"
+        android:name="com.example.android.projectiii.expert.ExpertContactView"
+        android:label="ExpertContactView" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="profession"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </activity>
 </navigation>

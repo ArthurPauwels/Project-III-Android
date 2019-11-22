@@ -5,12 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.R
 
-class ExpertRecyclerViewAdapter (private val data: MutableList<Expert>, private val clickHandler: OnItemClickListener) : RecyclerView.Adapter<ExpertRecyclerViewAdapter.ViewHolder>() {
+class ExpertRecyclerViewAdapter(
+    private val data: MutableList<Expert>,
+    private val clickHandler: OnItemClickListener
+) : RecyclerView.Adapter<ExpertRecyclerViewAdapter.ViewHolder>() {
 
-    interface OnItemClickListener{
+    interface OnItemClickListener {
         fun onItemClick(expert: Expert)
     }
 
@@ -21,8 +25,8 @@ class ExpertRecyclerViewAdapter (private val data: MutableList<Expert>, private 
 
         holder.name.text = item.name
         holder.email.text = item.email
-        holder.phone.text = item.phone
-        holder.bind(item,clickHandler)
+        holder.profession.text = item.profession
+        holder.bind(item, clickHandler)
 
     }
 
@@ -35,14 +39,16 @@ class ExpertRecyclerViewAdapter (private val data: MutableList<Expert>, private 
         return ViewHolder(view)
     }
 
-    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name = itemView.findViewById(R.id.tv_name) as TextView
         val email = itemView.findViewById(R.id.tv_email) as TextView
-        val phone = itemView.findViewById(R.id.tv_phone) as TextView
+        val profession = itemView.findViewById(R.id.tv_profession) as TextView
 
-            fun bind(item: Expert, listener: OnItemClickListener) {
+        fun bind(item: Expert, listener: OnItemClickListener) {
             itemView.setOnClickListener(View.OnClickListener {
-                listener.onItemClick(item)
+                it.findNavController().navigate(
+                    ExpertListFragmentDirections.actionExpertListToExpertContactView(item.name, item.profession, item.email)
+                )
             })
         }
     }

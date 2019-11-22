@@ -82,7 +82,7 @@ class TrackFragment : Fragment() {
                     newList.add(challenge)
                 }
             }
-            adapter.submitList(newList)
+            adapter.submit.List(newList)
         })
         */
 
