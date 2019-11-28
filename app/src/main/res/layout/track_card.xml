@@ -10,6 +10,9 @@
             name="clickListener"
             type="android.view.View.OnClickListener" />
         <variable
+            name="cbClickListener"
+            type="android.view.View.OnClickListener" />
+        <variable
             name="item"
             type="com.example.android.projectiii.challenge.Challenge" />
         <variable
@@ -99,7 +102,7 @@
                         android:src="@drawable/coins"
                         card_view:layout_constraintBottom_toBottomOf="parent"
                         card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent" />
+                        card_view:layout_constraintTop_toTopOf="parent"/>
 
                     <TextView
                         android:id="@+id/challengeCoins"
@@ -123,7 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="#000000"
-                    android:onClick="@{() -> employeeViewModel.addCoins(item.coins)}"
+                    android:onClick="@{cbClickListener}"
                     android:checked="@{item.isDone ? true : false}"
                     android:enabled="@{item.isDone ? false : true}"
                     android:visibility="@{item.isDone ? View.GONE : View.VISIBLE}"

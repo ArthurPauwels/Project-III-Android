@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.databinding.TrackCardBinding
 import com.example.android.projectiii.employee.EmployeeViewModel
 
-class TrackRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel) :
+class TrackRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel, private val trackViewModel: TrackViewModel) :
     ListAdapter<Track, RecyclerView.ViewHolder>(TrackDiffCallback()) {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val track = getItem(position)
@@ -22,18 +22,24 @@ class TrackRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel)
             TrackCardBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
-        )
+        , employeeViewModel, trackViewModel)
     }
 
-    class ViewHolder(val binding: TrackCardBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: TrackCardBinding, val employeeViewModel: EmployeeViewModel, val trackViewModel: TrackViewModel) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener {
                 binding.item2?.let { track ->
                     it.findNavController().navigate(
                         TracksListFragmentDirections.actionCurrentTracksToCurrentTrack(track.id)
                     )
-                    binding.item = track.test()
-                    binding.item2 = track
+                }
+            }
+            binding.setCbClickListener {
+                binding.item?.let { chall ->
+                    employeeViewModel.addCoins(chall.coins)
+                }
+                binding.item2?.let {track ->
+                    trackViewModel.completeChallenge(track.id)
                 }
             }
         }
