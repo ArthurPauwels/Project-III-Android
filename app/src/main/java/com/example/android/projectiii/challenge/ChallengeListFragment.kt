@@ -1,3 +1,4 @@
+
 package com.example.android.projectiii.challenge
 
 import android.os.Bundle
@@ -14,7 +15,7 @@ import com.example.android.projectiii.R
 import com.example.android.projectiii.challenge.viewmodel.ChallengeViewModel
 import com.example.android.projectiii.challenge.viewmodel.ChallengeViewModelFactory
 import com.example.android.projectiii.database.ProjectDatabase
-import com.example.android.projectiii.databinding.FragmentCurrentChallengeBinding
+import com.example.android.projectiii.databinding.FragmentTrackBinding
 import com.example.android.projectiii.employee.EmployeeRepository
 import com.example.android.projectiii.employee.EmployeeViewModel
 import com.example.android.projectiii.employee.EmployeeViewModelFactory
@@ -22,22 +23,22 @@ import com.example.android.projectiii.employee.EmployeeViewModelFactory
 class ChallengeListFragment : Fragment() {
     private lateinit var challengeViewModel: ChallengeViewModel
     private lateinit var employeeViewModel: EmployeeViewModel
-    private lateinit var binding: FragmentCurrentChallengeBinding
+    private lateinit var binding: FragmentTrackBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+/*
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_current_challenge,
+            R.layout.fragment_track,
             container,
             false
         )
 
         val instance = ProjectDatabase.getInstance(requireContext())
-        val challengeDao = instance.challengeDao
+        //val challengeDao = instance.challengeDao
         val employeeDao = instance.employeeDao
         val challengeViewModelFactory =
             ChallengeViewModelFactory(
@@ -73,7 +74,7 @@ class ChallengeListFragment : Fragment() {
 
         binding.currentChallengesList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.currentChallengesList.adapter = adapter
-
+*/
         return binding.root
     }
 }

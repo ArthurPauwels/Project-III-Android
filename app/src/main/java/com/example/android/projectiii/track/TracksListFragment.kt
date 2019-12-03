@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.R
-import com.example.android.projectiii.challenge.Challenge
 import com.example.android.projectiii.database.ProjectDatabase
 import com.example.android.projectiii.databinding.FragmentTracksBinding
 import com.example.android.projectiii.employee.EmployeeRepository
@@ -27,14 +26,12 @@ class TracksListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_tracks,
             container,
             false
         )
-
         val instance = ProjectDatabase.getInstance(requireContext())
         val trackDao = instance.trackDao
         //val challengeDao = instance.challengeDao
@@ -58,17 +55,14 @@ class TracksListFragment : Fragment() {
 
         binding.employeeViewModel = employeeViewModel
 
-        val adapter = TrackRecyclerViewAdapter(employeeViewModel)
+        val adapter = TrackRecyclerViewAdapter(employeeViewModel, trackViewModel)
 
         trackViewModel.trackList.observe(this, Observer { listTracks ->
-            val newList: MutableList<Challenge> = mutableListOf()
-
-            for (t in listTracks) {
-                newList.add(t.test())
-            }
             adapter.submitList(listTracks)
         })
-
+        trackViewModel.updated.observe(this, Observer { updated ->
+            adapter.notifyDataSetChanged()
+        })
         employeeViewModel.isUpdated.observe(this, Observer { isUpdated ->
             binding.invalidateAll()
         })

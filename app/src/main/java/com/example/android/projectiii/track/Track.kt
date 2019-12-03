@@ -15,6 +15,16 @@ data class Track(
     var currentChallenge: Long = 0L
 ) {
     fun test(): Challenge {
+        if (currentChallenge.toInt() >= challenges.size){
+            return challenges.last()
+        }
         return challenges[currentChallenge.toInt()]
+    }
+
+    fun completeChallenge() {
+        challenges[currentChallenge.toInt()].isDone = true
+        if (currentChallenge.toInt() < challenges.size){
+            currentChallenge += 1
+        }
     }
 }
