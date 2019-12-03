@@ -1,6 +1,5 @@
 package com.example.android.projectiii.track
 
-import android.util.Log
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
@@ -16,7 +15,6 @@ data class Track(
     var currentChallenge: Long = 0L
 ) {
     fun test(): Challenge {
-        Log.d(name ,  currentChallenge.toString() )
         if (currentChallenge.toInt() >= challenges.size){
             return challenges.last()
         }

@@ -13,9 +13,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-@Database(entities = [Challenge::class,Track::class, Employee::class], version = 14, exportSchema = false)
+@Database(entities = [Challenge::class,Track::class, Employee::class], version = 15, exportSchema = false)
 abstract class ProjectDatabase : RoomDatabase() {
-    abstract val challengeDao: ChallengeDao
     abstract val trackDao : TrackDao
     abstract val employeeDao: EmployeeDao
 
@@ -46,7 +45,6 @@ abstract class ProjectDatabase : RoomDatabase() {
     }
 
     private fun populateInitialData() {
-        val challenges = mutableListOf<Challenge>()
         val c1 = Challenge(1, "Run 5km a day", "5 days", false, 25, false, "Run 5km a day", R.drawable.running)
         val c2 = Challenge(2, "Run 6km a day", "5 days", false, 30, false, "Run 6km a day", R.drawable.running)
         val c3 = Challenge(3, "Run 7km a day", "5 days", false, 50, false, "Run 7km a day", R.drawable.running)
@@ -54,7 +52,6 @@ abstract class ProjectDatabase : RoomDatabase() {
         val c5 = Challenge(5, "Eat 1 piece of fruit a day", "1 day left", false, 50, true, "Eat 3 pieces of fruit a day", R.drawable.apple)
         val c6 = Challenge(6, "Eat 2 pieces of fruit a day", "1 day left", false, 50, false, "Eat 3 pieces of fruit a day", R.drawable.apple)
         val c7 = Challenge(7, "Eat 3 pieces of fruit a day", "1 day left", false, 50, false, "Eat 3 pieces of fruit a day", R.drawable.apple)
-        challenges.add(c1)
 
 
         val tracks = mutableListOf<Track>()
@@ -79,7 +76,6 @@ abstract class ProjectDatabase : RoomDatabase() {
 
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                challenges.map { challengeDao.insert(it) }
                 tracks.map { trackDao.insert(it) }
                 employeeDao.insert(employee)
             }

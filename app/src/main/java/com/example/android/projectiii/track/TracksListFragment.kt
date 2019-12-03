@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.R
-import com.example.android.projectiii.challenge.Challenge
 import com.example.android.projectiii.database.ProjectDatabase
 import com.example.android.projectiii.databinding.FragmentTracksBinding
 import com.example.android.projectiii.employee.EmployeeRepository
@@ -59,13 +58,6 @@ class TracksListFragment : Fragment() {
         val adapter = TrackRecyclerViewAdapter(employeeViewModel, trackViewModel)
 
         trackViewModel.trackList.observe(this, Observer { listTracks ->
-            val newList: MutableList<Challenge> = mutableListOf()
-
-            for (t in listTracks) {
-                if(!t.test().isDone){
-                    newList.add(t.test())
-                }
-            }
             adapter.submitList(listTracks)
         })
         trackViewModel.updated.observe(this, Observer { updated ->

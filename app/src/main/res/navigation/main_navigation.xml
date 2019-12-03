@@ -19,27 +19,15 @@
         <argument
             android:name="trackId"
             app:argType="long" />
-    </fragment>
-    <fragment
-        android:id="@+id/current_challenges"
-        android:name="com.example.android.projectiii.challenge.ChallengeListFragment"
-        android:label="ChallengeListFragment" />
-    <fragment
-        android:id="@+id/lock_challenges"
-        android:name="com.example.android.projectiii.challenge.LockedChallengeFragment"
-        android:label="CompletedChallengeFragment" />
-    <fragment
-        android:id="@+id/expert_list"
-        android:name="com.example.android.projectiii.expert.ExpertListFragment"
-        android:label="ExpertListFragment" >
         <action
-            android:id="@+id/action_expert_list_to_expertContactView"
-            app:destination="@id/expertContactView" />
+            android:id="@+id/action_current_track_to_expertFragment"
+            app:destination="@id/expertFragment" />
     </fragment>
-    <activity
-        android:id="@+id/expertContactView"
-        android:name="com.example.android.projectiii.expert.ExpertContactView"
-        android:label="ExpertContactView" >
+    <fragment
+        android:id="@+id/expertFragment"
+        android:name="com.example.android.projectiii.expert.ExpertFragment"
+        android:label="ExpertFragment"
+        >
         <argument
             android:name="name"
             app:argType="string" />
@@ -49,5 +37,5 @@
         <argument
             android:name="email"
             app:argType="string" />
-    </activity>
+    </fragment>
 </navigation>

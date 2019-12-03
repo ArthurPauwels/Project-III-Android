@@ -6,10 +6,4 @@
         android:id="@+id/current_tracks"
         android:icon="@drawable/ic_action_all"
         />
-    <item
-        android:title="Expert"
-        android:id="@+id/expert_list"
-        android:icon="@drawable/ic_action_expert"
-        />
-
 </menu>
