@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
         <import type="android.view.View" />
 
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
-
         <variable
             name="item"
             type="com.example.android.projectiii.challenge.Challenge" />
-
+        <variable
+            name="item2"
+            type="com.example.android.projectiii.track.Track" />
         <variable
             name="employeeViewModel"
             type="com.example.android.projectiii.employee.EmployeeViewModel" />
     </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,26 +54,6 @@
 
 
                 <TextView
-                    android:id="@+id/challengeDescription"
-                    android:layout_width="350dp"
-                    android:layout_height="137dp"
-                    android:layout_marginTop="8dp"
-                    android:background="#f2f2f2"
-                    android:padding="5dp"
-                    android:visibility="@{item.isOpen ? View.VISIBLE : View.GONE}"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@{item.description}"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toBottomOf="@+id/challengeImage"
-                    tools:text="Try to run 5KM a day for the next 5 days, you can do this! So grab your running shoes and hit the track
-    A 5 kilometer run can burn around 400 Kcal. Remember to run on a soft surface to prevent impact injuries.
-    Grass is a great option if you don't have access to a running track, ubt make sure the ground
-    is even to prevent falls."
-                    tools:visibility="visible" />
-
-                <TextView
                     android:id="@+id/challengeTitle"
                     android:layout_width="280dp"
                     android:layout_height="24dp"
@@ -106,13 +84,12 @@
                     android:id="@+id/challengeCoinBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:background="@drawable/rounded_challenge_coins"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     card_view:layout_constraintBottom_toBottomOf="parent"
                     card_view:layout_constraintStart_toStartOf="@+id/challengeImage"
-                    card_view:layout_constraintTop_toBottomOf="@+id/challengeDescription">
+                    card_view:layout_constraintTop_toBottomOf="@+id/challengeImage">
 
                     <ImageView
                         android:id="@+id/challengeCoinImage"
@@ -130,8 +107,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="5dp"
-                        android:textColor="#565656"
                         android:text="@{String.valueOf(item.coins)}"
+                        android:textColor="#565656"
                         card_view:layout_constraintBottom_toBottomOf="parent"
                         card_view:layout_constraintEnd_toEndOf="parent"
                         card_view:layout_constraintHorizontal_bias="1.0"
@@ -140,7 +117,19 @@
                         tools:text="25" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-                
+
+                <CheckBox
+                    android:id="@+id/challengeCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#000000"
+                    android:onClick="@{() -> employeeViewModel.addCoins(item.coins)}"
+                    android:checked="@{item.isDone ? true : false}"
+                    android:enabled="@{item.isDone ? false : true}"
+                    android:visibility="@{item.isDone ? View.GONE : View.VISIBLE}"
+                    card_view:layout_constraintEnd_toEndOf="@+id/challengeLimitTime"
+                    card_view:layout_constraintTop_toTopOf="@+id/challengeCoinBox" />
+
                 <ImageView
                     android:id="@+id/challengeLockIcon"
                     android:layout_width="50dp"

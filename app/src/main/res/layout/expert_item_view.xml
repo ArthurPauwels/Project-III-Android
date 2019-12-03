@@ -19,7 +19,7 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/tv_phone"
+        android:id="@+id/tv_profession"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />

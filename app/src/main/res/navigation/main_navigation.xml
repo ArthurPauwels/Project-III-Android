@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation"
-    app:startDestination="@+id/current_challenges">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@+id/current_tracks">
 
+    <fragment
+        android:id="@+id/current_tracks"
+        android:name="com.example.android.projectiii.track.TracksListFragment"
+        android:label="TracksListFragment" >
+        <action
+            android:id="@+id/action_current_tracks_to_current_track"
+            app:destination="@id/current_track" />
+    </fragment>
+    <fragment
+        android:id="@+id/current_track"
+        android:name="com.example.android.projectiii.track.TrackFragment"
+        android:label="TrackFragment">
+        <argument
+            android:name="trackId"
+            app:argType="long" />
+    </fragment>
     <fragment
         android:id="@+id/current_challenges"
         android:name="com.example.android.projectiii.challenge.ChallengeListFragment"
@@ -14,5 +31,23 @@
     <fragment
         android:id="@+id/expert_list"
         android:name="com.example.android.projectiii.expert.ExpertListFragment"
-        android:label="ExpertListFragment" />
+        android:label="ExpertListFragment" >
+        <action
+            android:id="@+id/action_expert_list_to_expertContactView"
+            app:destination="@id/expertContactView" />
+    </fragment>
+    <activity
+        android:id="@+id/expertContactView"
+        android:name="com.example.android.projectiii.expert.ExpertContactView"
+        android:label="ExpertContactView" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="profession"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </activity>
 </navigation>

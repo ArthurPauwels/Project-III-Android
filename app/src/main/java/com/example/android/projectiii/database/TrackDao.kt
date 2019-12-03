@@ -4,13 +4,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.android.projectiii.challenge.Challenge
+import com.example.android.projectiii.track.Track
 
 @Dao
-interface ChallengeDao {
+interface TrackDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(challenge: Challenge)
+    suspend fun insert(track: Track)
 
-    @Query("SELECT * FROM challenges")
-    suspend fun getChallenges(): List<Challenge>
+    @Query("SELECT * FROM tracks")
+    suspend fun getTracks(): List<Track>
 }

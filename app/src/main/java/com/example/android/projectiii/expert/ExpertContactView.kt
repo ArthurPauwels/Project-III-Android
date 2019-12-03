@@ -15,7 +15,7 @@ class ExpertContactView: AppCompatActivity() {
         )
 
         binding.textEpertEmail.text = intent.getStringExtra("email")
-        binding.textExpertPhone.text = intent.getStringExtra("phone")
+        binding.textExpertProfession.text = intent.getStringExtra("profession")
         binding.textExpertName.text = intent.getStringExtra("name")
     }
 }
