@@ -67,7 +67,7 @@ class ChallengeListFragment : Fragment() {
             adapter.submitList(newList)
         })
 
-        employeeViewModel.isUpdated.observe(this, Observer { isUpdated ->
+        employeeViewModel.isUpdated.observe(this, Observer { _ ->
             binding.invalidateAll()
         })
 
