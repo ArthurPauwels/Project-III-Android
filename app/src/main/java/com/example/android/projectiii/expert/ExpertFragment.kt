@@ -27,7 +27,7 @@ class ExpertFragment:Fragment() {
 
         binding.textExpertName.text = args.name
         binding.textExpertProfession.text = args.profession
-        binding.textExpertEmail.text = args.email
+        binding.textEpertEmail.text = args.email
 
         return binding.root
     }
