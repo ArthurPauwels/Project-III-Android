@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "challenges")
-data class Challenge (
+data class Challenge(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
     val title: String,
@@ -16,7 +16,7 @@ data class Challenge (
     val image: Int,
     var isOpen: Boolean = false
 ) {
-    fun  complete() {
-        isDone = true;
+    fun complete() {
+        isDone = true
     }
 }

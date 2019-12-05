@@ -6,4 +6,8 @@ class TrackRepository(private val trackDao: TrackDao) {
     suspend fun getAllTracks(): List<Track> {
         return trackDao.getTracks()
     }
+
+    suspend fun updateTracks(tracks: List<Track>) {
+        trackDao.updateTracks(tracks)
+    }
 }

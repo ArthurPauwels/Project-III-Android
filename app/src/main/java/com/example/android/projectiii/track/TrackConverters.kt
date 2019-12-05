@@ -12,6 +12,8 @@ class TrackConverters {
 
     @TypeConverter
     fun listToJson(value: List<Challenge>?): String = gson.toJson(value)
+
     @TypeConverter
-    fun fromString(value: String): List<Challenge> = gson.fromJson(value, object : TypeToken<List<Challenge>>() {}.getType())
+    fun fromString(value: String): List<Challenge> =
+        gson.fromJson(value, object : TypeToken<List<Challenge>>() {}.getType())
 }
