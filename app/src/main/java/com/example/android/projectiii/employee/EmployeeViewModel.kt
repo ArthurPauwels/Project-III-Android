@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class EmployeeViewModel (private val employeeRepository: EmployeeRepository) : ViewModel() {
+class EmployeeViewModel(private val employeeRepository: EmployeeRepository) : ViewModel() {
     private var _employee = MutableLiveData<Employee>()
     var isUpdated = MutableLiveData<Boolean>(false)
 

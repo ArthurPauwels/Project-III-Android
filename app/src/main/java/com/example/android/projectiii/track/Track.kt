@@ -15,23 +15,24 @@ data class Track(
     var currentChallenge: Long = 0L
 ) {
     fun test(): Challenge {
-        if (currentChallenge.toInt() >= challenges.size){
+        if (currentChallenge.toInt() >= challenges.size) {
             return challenges.last()
         }
         return challenges[currentChallenge.toInt()]
     }
 
     fun completeChallenge() {
-        challenges[currentChallenge.toInt()].isDone = true
-        if (currentChallenge.toInt() < challenges.size){
+        challenges[currentChallenge.toInt()].complete()
+        if (currentChallenge.toInt() < challenges.size) {
             currentChallenge += 1
         }
     }
 
-    fun getIncompleteChallenges():List<Challenge> {
+    fun getIncompleteChallenges(): List<Challenge> {
         return challenges.filter { c -> !c.isDone }
     }
 
-    fun isComplete() : Boolean {
-return challenges.last().isDone    }
+    fun isComplete(): Boolean {
+        return challenges.last().isDone
+    }
 }

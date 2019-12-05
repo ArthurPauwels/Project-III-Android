@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/current_tracks"
         android:name="com.example.android.projectiii.track.TracksListFragment"
-        android:label="TracksListFragment" >
+        android:label="TracksListFragment">
         <action
             android:id="@+id/action_current_tracks_to_current_track"
             app:destination="@id/current_track" />
@@ -26,8 +26,7 @@
     <fragment
         android:id="@+id/expertFragment"
         android:name="com.example.android.projectiii.expert.ExpertFragment"
-        android:label="ExpertFragment"
-        >
+        android:label="ExpertFragment">
         <argument
             android:name="name"
             app:argType="string" />

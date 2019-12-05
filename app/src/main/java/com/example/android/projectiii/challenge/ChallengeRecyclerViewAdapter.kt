@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.databinding.ChallengeCardBinding
 import com.example.android.projectiii.employee.EmployeeViewModel
 
-class ChallengeRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel) : ListAdapter<Challenge, RecyclerView.ViewHolder>(ChallengeDiffCallback()) {
+class ChallengeRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel) :
+    ListAdapter<Challenge, RecyclerView.ViewHolder>(ChallengeDiffCallback()) {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val challenge = getItem(position)
@@ -17,9 +18,11 @@ class ChallengeRecyclerViewAdapter(private val employeeViewModel: EmployeeViewMo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ViewHolder(ChallengeCardBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
-        ))
+        return ViewHolder(
+            ChallengeCardBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
     }
 
     class ViewHolder(val binding: ChallengeCardBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -44,6 +47,7 @@ private class ChallengeDiffCallback : DiffUtil.ItemCallback<Challenge>() {
     override fun areItemsTheSame(oldItem: Challenge, newItem: Challenge): Boolean {
         return oldItem.id == newItem.id
     }
+
     override fun areContentsTheSame(oldItem: Challenge, newItem: Challenge): Boolean {
         return oldItem == newItem
     }
