@@ -27,4 +27,11 @@ data class Track(
             currentChallenge += 1
         }
     }
+
+    fun getIncompleteChallenges():List<Challenge> {
+        return challenges.filter { c -> !c.isDone }
+    }
+
+    fun isComplete() : Boolean {
+return challenges.last().isDone    }
 }

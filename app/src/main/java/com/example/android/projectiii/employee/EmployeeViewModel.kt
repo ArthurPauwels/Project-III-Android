@@ -8,10 +8,10 @@ import kotlinx.coroutines.launch
 
 class EmployeeViewModel (private val employeeRepository: EmployeeRepository) : ViewModel() {
     private var _employee = MutableLiveData<Employee>()
+    var isUpdated = MutableLiveData<Boolean>(false)
+
     val employee: LiveData<Employee>
         get() = _employee
-
-    var isUpdated = MutableLiveData<Boolean>(false)
 
     init {
         viewModelScope.launch {
@@ -27,9 +27,5 @@ class EmployeeViewModel (private val employeeRepository: EmployeeRepository) : V
                 employeeRepository.updateEmployee(it)
             }
         }
-    }
-
-    fun resetIsUpdated() {
-        isUpdated.value = false
     }
 }

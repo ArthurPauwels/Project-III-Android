@@ -29,9 +29,11 @@ class TrackRecyclerViewAdapter(private val employeeViewModel: EmployeeViewModel,
         init {
             binding.setClickListener {
                 binding.item2?.let { track ->
-                    it.findNavController().navigate(
-                        TracksListFragmentDirections.actionCurrentTracksToCurrentTrack(track.id)
-                    )
+                    if (!track.isComplete()){
+                        it.findNavController().navigate(
+                            TracksListFragmentDirections.actionCurrentTracksToCurrentTrack(track.id)
+                        )
+                    }
                 }
             }
             binding.setCbClickListener {

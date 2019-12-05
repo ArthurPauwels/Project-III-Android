@@ -60,7 +60,7 @@ class TracksListFragment : Fragment() {
         trackViewModel.trackList.observe(this, Observer { listTracks ->
             adapter.submitList(listTracks)
         })
-        trackViewModel.updated.observe(this, Observer { updated ->
+        trackViewModel.isUpdated.observe(this, Observer { updated ->
             adapter.notifyDataSetChanged()
         })
         employeeViewModel.isUpdated.observe(this, Observer { isUpdated ->

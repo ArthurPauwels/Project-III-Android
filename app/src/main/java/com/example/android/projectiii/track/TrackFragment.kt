@@ -59,7 +59,7 @@ class TrackFragment : Fragment() {
         trackViewModel.trackList.observe(this, Observer { listTracks ->
             val t = listTracks.find { t -> t.id == args.trackId }
             if (t !== null){
-                adapter.submitList(t.challenges)
+                adapter.submitList(t.getIncompleteChallenges())
             }
             binding.setClickListener {
                     it.findNavController().navigate(

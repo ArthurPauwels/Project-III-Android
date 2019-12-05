@@ -8,9 +8,9 @@ interface EmployeeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(employee: Employee)
 
-    @Update
-    suspend fun updateEmployee(employee: Employee)
-
     @Query("SELECT * FROM employee WHERE id = :employeeId")
     suspend fun getEmployee(employeeId: Long): Employee
+
+    @Update
+    suspend fun updateEmployee(employee: Employee)
 }
