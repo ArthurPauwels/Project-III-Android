@@ -21,120 +21,72 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class Expert_ClickingAnExpertBringsUpContactInfo {
+class Challenges_ClickingExpertBringsUpExpert {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun expert_ClickingAnExpertBringsUpContactInfo() {
+    fun challenges_ClickingExpertBringsUpExpert() {
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.expert_list), withContentDescription("Expert"),
+                withId(R.id.current_tracks), withContentDescription("Tracks"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottom_nav),
                         0
                     ),
-                    1
+                    0
                 ),
                 isDisplayed()
             )
         )
         bottomNavigationItemView.perform(click())
 
-        val bottomNavigationItemView2 = onView(
+        val cardView = onView(
             allOf(
-                withId(R.id.expert_list), withContentDescription("Expert"),
                 childAtPosition(
                     childAtPosition(
-                        withId(R.id.bottom_nav),
+                        withId(R.id.current_tracks_list),
                         0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        bottomNavigationItemView2.perform(click())
-
-        val bottomNavigationItemView3 = onView(
-            allOf(
-                withId(R.id.expert_list), withContentDescription("Expert"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.bottom_nav),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        bottomNavigationItemView3.perform(click())
-
-        val linearLayout = onView(
-            allOf(
-                childAtPosition(
-                    allOf(
-                        withId(R.id.expert_list),
-                        childAtPosition(
-                            withClassName(`is`("android.widget.FrameLayout")),
-                            0
-                        )
                     ),
                     0
                 ),
                 isDisplayed()
             )
         )
-        linearLayout.perform(click())
+        cardView.perform(click())
+
+        val constraintLayout = onView(
+            allOf(
+                withId(R.id.expert),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.LinearLayout")),
+                        0
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        constraintLayout.perform(click())
 
         val textView = onView(
             allOf(
-                withId(R.id.text_expert_name), withText("A. Paarens"),
+                withId(R.id.text_expert_name), withText("Baekens A."),
                 childAtPosition(
                     childAtPosition(
-                        withId(android.R.id.content),
+                        withId(R.id.main_fragment_container),
                         0
                     ),
-                    0
+                    1
                 ),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("A. Paarens")))
-
-        val textView2 = onView(
-            allOf(
-                withId(R.id.text_expert_profession), withText("Dietician"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    2
-                ),
-                isDisplayed()
-            )
-        )
-        textView2.check(matches(withText("Dietician")))
-
-        val textView3 = onView(
-            allOf(
-                withId(R.id.text_epert_email), withText("Paarems@email.com"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    4
-                ),
-                isDisplayed()
-            )
-        )
-        textView3.check(matches(withText("Paarems@email.com")))
+        textView.check(matches(withText("Baekens A.")))
     }
 
     private fun childAtPosition(
