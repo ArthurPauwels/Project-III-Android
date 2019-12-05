@@ -14,8 +14,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @Database(
-    entities = [Challenge::class, Track::class, Employee::class],
-    version = 15,
+    entities = [Track::class, Employee::class],
+    version = 17,
     exportSchema = false
 )
 abstract class ProjectDatabase : RoomDatabase() {

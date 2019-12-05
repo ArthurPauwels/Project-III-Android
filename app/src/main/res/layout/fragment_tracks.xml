@@ -8,6 +8,9 @@
         <variable
             name="employeeViewModel"
             type="com.example.android.projectiii.employee.EmployeeViewModel" />
+        <variable
+            name="trackViewModel"
+            type="com.example.android.projectiii.track.TrackViewModel" />
     </data>
 
     <LinearLayout
