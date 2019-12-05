@@ -30,20 +30,6 @@ class Tracks_UndoingChallengeCompletionRemovesTheCoins {
 
     @Test
     fun tracks_UndoingChallengeCompletionRemovesTheCoins() {
-        val bottomNavigationItemView = onView(
-            allOf(
-                withId(R.id.expert_list), withContentDescription("Expert"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.bottom_nav),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        bottomNavigationItemView.perform(click())
 
         val bottomNavigationItemView2 = onView(
             allOf(

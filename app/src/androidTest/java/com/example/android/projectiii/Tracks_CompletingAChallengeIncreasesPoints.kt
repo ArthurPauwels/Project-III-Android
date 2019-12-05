@@ -30,20 +30,6 @@ class Tracks_CompletingAChallengeIncreasesPoints {
 
     @Test
     fun tracks_CompletingAChallengeIncreasesPoints() {
-        val expertNav = onView(
-            allOf(
-                withId(R.id.expert_list), withContentDescription("Expert"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.bottom_nav),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        expertNav.perform(click())
 
         val tracksNav = onView(
             allOf(

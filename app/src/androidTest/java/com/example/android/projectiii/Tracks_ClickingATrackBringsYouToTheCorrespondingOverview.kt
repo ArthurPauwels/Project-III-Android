@@ -29,22 +29,8 @@ class Tracks_ClickingATrackBringsYouToTheCorrespondingOverview {
 
     @Test
     fun tracks_ClickingATrackBringsYouToTheCorrespondingOverview() {
-        val bottomNavigationItemView = onView(
-            allOf(
-                withId(R.id.expert_list), withContentDescription("Expert"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.bottom_nav),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        bottomNavigationItemView.perform(click())
 
-        val bottomNavigationItemView2 = onView(
+        val bottomNavigationItemView = onView(
             allOf(
                 withId(R.id.current_tracks), withContentDescription("Tracks"),
                 childAtPosition(
@@ -57,7 +43,7 @@ class Tracks_ClickingATrackBringsYouToTheCorrespondingOverview {
                 isDisplayed()
             )
         )
-        bottomNavigationItemView2.perform(click())
+        bottomNavigationItemView.perform(click())
 
         val cardView = onView(
             allOf(
