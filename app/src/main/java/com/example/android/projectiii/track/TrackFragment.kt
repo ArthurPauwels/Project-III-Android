@@ -50,28 +50,35 @@ class TrackFragment : Fragment() {
             EmployeeViewModelFactory(
                 EmployeeRepository(employeeDao)
             )
-        trackViewModel = ViewModelProviders.of(this, trackViewModelFactory).get(TrackViewModel::class.java)
-        employeeViewModel = ViewModelProviders.of(this, employeeViewModelFactory).get(EmployeeViewModel::class.java)
+        trackViewModel =
+            ViewModelProviders.of(this, trackViewModelFactory).get(TrackViewModel::class.java)
+        employeeViewModel =
+            ViewModelProviders.of(this, employeeViewModelFactory).get(EmployeeViewModel::class.java)
         binding.lifecycleOwner = this
         binding.employeeViewModel = employeeViewModel
 
         val adapter = ChallengeRecyclerViewAdapter(employeeViewModel)
         trackViewModel.trackList.observe(this, Observer { listTracks ->
             val t = listTracks.find { t -> t.id == args.trackId }
-            if (t !== null){
-                adapter.submitList(t.challenges)
+            if (t !== null) {
+                adapter.submitList(t.getIncompleteChallenges())
             }
             binding.setClickListener {
-                    it.findNavController().navigate(
-                        TrackFragmentDirections.actionCurrentTrackToExpertFragment("Baekens A.","Deontoloog","BaekansA@hotmail.com")
+                it.findNavController().navigate(
+                    TrackFragmentDirections.actionCurrentTrackToExpertFragment(
+                        "Baekens A.",
+                        "Deontoloog",
+                        "BaekansA@hotmail.com"
                     )
+                )
             }
         })
         employeeViewModel.isUpdated.observe(this, Observer { isUpdated ->
             binding.invalidateAll()
         })
 
-        binding.currentChallengesList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        binding.currentChallengesList.layoutManager =
+            LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.currentChallengesList.adapter = adapter
 
         return binding.root

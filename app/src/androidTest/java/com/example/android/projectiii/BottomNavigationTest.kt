@@ -6,8 +6,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.android.projectiii.challenge.ChallengeListFragment
-import com.example.android.projectiii.databinding.FragmentCurrentChallengeBinding
+import com.example.android.projectiii.track.TracksListFragment
+import com.example.android.projectiii.databinding.FragmentTracksBinding
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -27,7 +27,7 @@ class BottomNavigationTest {
     fun testNavigationToLockedChallenges() {
         val mockNavController = mock(NavController::class.java)
 
-        val currentScenario = launchFragmentInContainer<ChallengeListFragment>()
+        val currentScenario = launchFragmentInContainer<TracksListFragment>()
 
         currentScenario.onFragment { fragment ->
             Navigation.setViewNavController(fragment.requireView(), mockNavController)

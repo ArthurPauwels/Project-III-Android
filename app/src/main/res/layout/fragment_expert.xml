@@ -1,59 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_label_profession3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:text="@string/expert_contact_info"
+            android:textAlignment="center"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/text_expert_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="28dp"
-            android:textSize="24sp"
-            tools:text="Mr. Expert"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/text_label_profession"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:text="Profession"
-            app:layout_constraintStart_toStartOf="@+id/text_expert_name"
-            app:layout_constraintTop_toBottomOf="@+id/text_expert_name" />
-
-        <TextView
-            android:id="@+id/text_label_email"
-            android:layout_width="41dp"
-            android:layout_height="17dp"
-            android:layout_marginTop="44dp"
-            android:text="Email"
-            app:layout_constraintStart_toStartOf="@+id/text_label_profession"
-            app:layout_constraintTop_toBottomOf="@+id/text_label_profession" />
+            tools:layout_editor_absoluteY="168dp"
+            tools:text="Mr. Expert" />
 
         <TextView
             android:id="@+id/text_expert_profession"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            app:layout_constraintStart_toEndOf="@+id/text_label_profession"
-            app:layout_constraintTop_toTopOf="@+id/text_label_profession"
-            tools:text="+00 00 00 00 00 00" />
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="231dp"
+            tools:text="doctor" />
 
         <TextView
             android:id="@+id/text_expert_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp"
             android:autoLink="email"
-            app:layout_constraintStart_toEndOf="@+id/text_label_email"
-            app:layout_constraintTop_toTopOf="@+id/text_label_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="294dp"
             tools:text="mymail@expert.com" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/expertImage2"
+            android:layout_width="162dp"
+            android:layout_height="179dp"
+            android:layout_marginStart="8dp"
+            android:baselineAlignBottom="true"
+            android:contentDescription="@string/expert_icon"
+            android:src="@drawable/expert"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 </layout>
