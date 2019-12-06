@@ -34,7 +34,6 @@ class TracksListFragment : Fragment() {
         )
         val instance = ProjectDatabase.getInstance(requireContext())
         val trackDao = instance.trackDao
-        //val challengeDao = instance.challengeDao
         val employeeDao = instance.employeeDao
         val trackViewModelFactory =
             TrackViewModelFactory(
@@ -44,7 +43,7 @@ class TracksListFragment : Fragment() {
             EmployeeViewModelFactory(
                 EmployeeRepository(employeeDao)
             )
-
+        Thread.sleep(400)
         trackViewModel = ViewModelProviders.of(this, trackViewModelFactory).get(
             TrackViewModel::class.java
         )
@@ -52,11 +51,10 @@ class TracksListFragment : Fragment() {
             EmployeeViewModel::class.java
         )
         binding.lifecycleOwner = this
-
         binding.employeeViewModel = employeeViewModel
+        binding.trackViewModel = trackViewModel
 
         val adapter = TrackRecyclerViewAdapter(employeeViewModel, trackViewModel)
-
         trackViewModel.trackList.observe(this, Observer { listTracks ->
             adapter.submitList(listTracks)
         })
