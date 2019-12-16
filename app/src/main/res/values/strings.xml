@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Health Company</string>
+    <string name="expert_contact_info">Expert Contact Info</string>
+    <string name="expert_icon">Expert Icon</string>
+    <string name="current_tracks">Current Tracks</string>
+    <string name="coins">coins</string>
+    <string name="challenges">Challenges</string>
+    <string name="locked">Locked</string>
 </resources>
