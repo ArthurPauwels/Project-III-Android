@@ -1,6 +1,5 @@
 package com.example.android.projectiii.track
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController

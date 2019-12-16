@@ -1,11 +1,10 @@
 package com.example.android.projectiii.challenge
 
-import com.example.android.projectiii.track.Track
-import com.example.android.projectiii.track.TrackRepository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.projectiii.track.TrackRepository
 import kotlinx.coroutines.launch
 
 class ChallengeViewModel(private val trackRepository: TrackRepository, private val idTrack: String) : ViewModel() {

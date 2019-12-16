@@ -1,7 +1,6 @@
 package com.example.android.projectiii.track
 
 import android.net.ConnectivityManager
-import android.util.Log
 import com.example.android.projectiii.R
 import com.example.android.projectiii.challenge.Challenge
 import com.example.android.projectiii.database.TrackDao
@@ -18,12 +17,6 @@ class TrackRepository(
             var trackList = mutableListOf<Track>()
 
             for (track in result.docs) {
-                var newTrack = Track(
-                    _id = track._id,
-                    name = track.name,
-                    expert = track.expert,
-                    challenges = listOf()
-                )
 
                 var challengeList = mutableListOf<Challenge>()
 

@@ -1,10 +1,8 @@
 package com.example.android.projectiii.track
 
 import androidx.room.ColumnInfo
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.Relation
 import androidx.room.TypeConverters
 import com.example.android.projectiii.challenge.Challenge
 
@@ -12,14 +10,14 @@ import com.example.android.projectiii.challenge.Challenge
 @TypeConverters(TrackConverters::class)
 data class Track(
     @PrimaryKey
-    @ColumnInfo(name="trackId")
+    @ColumnInfo(name = "trackId")
     var _id: String,
     var name: String,
     var expert: String,
     var challenges: List<Challenge>,
     var currentChallenge: String = ""
 ) {
-    fun countUndoneChallenge (): Int {
+    fun countUndoneChallenge(): Int {
         var undone = 0
 
         for (challenge in challenges) {

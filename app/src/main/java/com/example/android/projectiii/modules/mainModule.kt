@@ -43,7 +43,7 @@ fun createTrackDao(projectDatabase: ProjectDatabase): TrackDao {
     return projectDatabase.trackDao
 }
 
-fun createTrackApi (): TrackApi {
+fun createTrackApi(): TrackApi {
     return TrackApi().init()
 }
 
@@ -62,4 +62,3 @@ fun createEmployeeRepository(employeeDao: EmployeeDao): EmployeeRepository {
 fun createConnectivityManager(context: Context): ConnectivityManager {
     return context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 }
-

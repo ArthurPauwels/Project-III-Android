@@ -13,10 +13,10 @@ import com.example.android.projectiii.track.Track
     onDelete = ForeignKey.NO_ACTION)
 data class Challenge(
     @PrimaryKey
-    @ColumnInfo(name="challengeId")
+    @ColumnInfo(name = "challengeId")
     val _id: String,
     val reward: Int,
-    @ColumnInfo(name="challengeName")
+    @ColumnInfo(name = "challengeName")
     val name: String,
     val description: String,
 

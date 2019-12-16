@@ -1,19 +1,16 @@
 package com.example.android.projectiii.database
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.android.projectiii.R
-import com.example.android.projectiii.challenge.Challenge
 import com.example.android.projectiii.employee.Employee
 import com.example.android.projectiii.track.Track
+import java.lang.Exception
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 @Database(
     entities = [Track::class, Employee::class],
