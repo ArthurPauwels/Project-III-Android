@@ -22,11 +22,11 @@ import com.example.android.projectiii.databinding.FragmentCurrentChallengeBindin
 import com.example.android.projectiii.employee.EmployeeRepository
 import com.example.android.projectiii.employee.EmployeeViewModel
 import com.example.android.projectiii.employee.EmployeeViewModelFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TrackFragment : Fragment() {
-    private lateinit var challengeViewModel: ChallengeViewModel
-    private lateinit var trackViewModel: TrackViewModel
-    private lateinit var employeeViewModel: EmployeeViewModel
+    private val trackViewModel: TrackViewModel by viewModel()
+    private val employeeViewModel: EmployeeViewModel by viewModel()
     private lateinit var binding: FragmentCurrentChallengeBinding
 
     override fun onCreateView(
@@ -42,26 +42,6 @@ class TrackFragment : Fragment() {
             false
         )
 
-        val instance = ProjectDatabase.getInstance(requireContext())
-        val challengeDao = instance.challengeDao
-        val employeeDao = instance.employeeDao
-        val trackDao = instance.trackDao
-
-        val trackViewModelFactory =
-            TrackViewModelFactory(
-                TrackRepository(trackDao)
-            )
-        val challengeViewModelFactory =
-            ChallengeViewModelFactory(
-                ChallengeRepository(challengeDao)
-            )
-        val employeeViewModelFactory =
-            EmployeeViewModelFactory(
-                EmployeeRepository(employeeDao)
-            )
-        trackViewModel = ViewModelProviders.of(this, trackViewModelFactory).get(TrackViewModel::class.java)
-        challengeViewModel = ViewModelProviders.of(this, challengeViewModelFactory).get(ChallengeViewModel::class.java)
-        employeeViewModel = ViewModelProviders.of(this, employeeViewModelFactory).get(EmployeeViewModel::class.java)
         binding.lifecycleOwner = this
 
         binding.employeeViewModel = employeeViewModel
@@ -73,18 +53,6 @@ class TrackFragment : Fragment() {
                 adapter.submitList(t.challenges)
             }
         })
-        /*
-        challengeViewModel.challengeList.observe(this, Observer { listChallenges ->
-            val newList: MutableList<Challenge> = mutableListOf()
-
-            for (challenge in listChallenges) {
-                if (challenge.id == args.trackId) {
-                    newList.add(challenge)
-                }
-            }
-            adapter.submit.List(newList)
-        })
-        */
 
         employeeViewModel.isUpdated.observe(this, Observer { isUpdated ->
             binding.invalidateAll()

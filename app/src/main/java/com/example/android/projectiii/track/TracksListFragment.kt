@@ -17,10 +17,11 @@ import com.example.android.projectiii.databinding.FragmentTracksBinding
 import com.example.android.projectiii.employee.EmployeeRepository
 import com.example.android.projectiii.employee.EmployeeViewModel
 import com.example.android.projectiii.employee.EmployeeViewModelFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TracksListFragment : Fragment() {
-    private lateinit var trackViewModel: TrackViewModel
-    private lateinit var employeeViewModel: EmployeeViewModel
+    private val trackViewModel: TrackViewModel by viewModel()
+    private val employeeViewModel: EmployeeViewModel by viewModel()
     private lateinit var binding: FragmentTracksBinding
 
     override fun onCreateView(
@@ -35,25 +36,6 @@ class TracksListFragment : Fragment() {
             false
         )
 
-        val instance = ProjectDatabase.getInstance(requireContext())
-        val trackDao = instance.trackDao
-        //val challengeDao = instance.challengeDao
-        val employeeDao = instance.employeeDao
-        val trackViewModelFactory =
-            TrackViewModelFactory(
-                TrackRepository(trackDao)
-            )
-        val employeeViewModelFactory =
-            EmployeeViewModelFactory(
-                EmployeeRepository(employeeDao)
-            )
-
-        trackViewModel = ViewModelProviders.of(this, trackViewModelFactory).get(
-            TrackViewModel::class.java
-        )
-        employeeViewModel = ViewModelProviders.of(this, employeeViewModelFactory).get(
-            EmployeeViewModel::class.java
-        )
         binding.lifecycleOwner = this
 
         binding.employeeViewModel = employeeViewModel

@@ -62,6 +62,17 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
     implementation "de.hdodenhof:circleimageview:$circleimageview_version"
 
+    // Koin for Kotlin
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    // Koin Extended & experimental features
+    implementation "org.koin:koin-core-ext:$koin_version"
+
+    // Koin for Unit tests
+    testImplementation "org.koin:koin-test:$koin_version"
+
     // Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigation_version"
