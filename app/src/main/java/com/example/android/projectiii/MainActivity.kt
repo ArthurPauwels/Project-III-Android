@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
             R.id.current_tracks
         ).build()
         setupActionBarWithNavController(this, navController, appBarConfiguration)
-        NavigationUI.setupWithNavController(bottom_nav, navController)
     }
 
     override fun onSupportNavigateUp() =
