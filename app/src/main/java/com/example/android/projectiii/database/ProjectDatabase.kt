@@ -1,6 +1,7 @@
 package com.example.android.projectiii.database
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -12,10 +13,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 @Database(
     entities = [Track::class, Employee::class],
-    version = 17,
+    version = 20,
     exportSchema = false
 )
 abstract class ProjectDatabase : RoomDatabase() {
@@ -29,8 +31,6 @@ abstract class ProjectDatabase : RoomDatabase() {
         fun getInstance(context: Context): ProjectDatabase {
             synchronized(this) {
 
-                context.deleteDatabase("challenge_database")
-
                 var instance = INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
@@ -40,7 +40,7 @@ abstract class ProjectDatabase : RoomDatabase() {
                     )
                         .fallbackToDestructiveMigration()
                         .build()
-                    instance.populateInitialData()
+                    instance.populateEmployee()
                     INSTANCE = instance
                 }
                 return instance
@@ -48,100 +48,16 @@ abstract class ProjectDatabase : RoomDatabase() {
         }
     }
 
-    private fun populateInitialData() {
-        val c1 = Challenge(
-            1,
-            "Run 5km a day",
-            "5 days",
-            false,
-            25,
-            false,
-            "Run 5km a day",
-            R.drawable.running
-        )
-        val c2 = Challenge(
-            2,
-            "Run 6km a day",
-            "5 days",
-            false,
-            30,
-            false,
-            "Run 6km a day",
-            R.drawable.running
-        )
-        val c3 = Challenge(
-            3,
-            "Run 7km a day",
-            "5 days",
-            false,
-            50,
-            false,
-            "Run 7km a day",
-            R.drawable.running
-        )
-        val c4 = Challenge(
-            4,
-            "Run 8km a day",
-            "5 days",
-            false,
-            90,
-            false,
-            "Run 8km a day",
-            R.drawable.running
-        )
-        val c5 = Challenge(
-            5,
-            "Eat 1 piece of fruit a day",
-            "1 day left",
-            false,
-            50,
-            true,
-            "Eat 3 pieces of fruit a day",
-            R.drawable.apple
-        )
-        val c6 = Challenge(
-            6,
-            "Eat 2 pieces of fruit a day",
-            "1 day left",
-            false,
-            50,
-            false,
-            "Eat 3 pieces of fruit a day",
-            R.drawable.apple
-        )
-        val c7 = Challenge(
-            7,
-            "Eat 3 pieces of fruit a day",
-            "1 day left",
-            false,
-            50,
-            false,
-            "Eat 3 pieces of fruit a day",
-            R.drawable.apple
-        )
-
-        val tracks = mutableListOf<Track>()
-        val cl1 = mutableListOf<Challenge>()
-        cl1.add(c1)
-        cl1.add(c2)
-        cl1.add(c3)
-        cl1.add(c4)
-        val cl2 = mutableListOf<Challenge>()
-        cl2.add(c5)
-        cl2.add(c6)
-        cl2.add(c7)
-
-        val track1 = Track(1, "Get Fit.", cl1, 0)
-        val track2 = Track(2, "Eat good.", cl2, 1)
-        tracks.add(track1)
-        tracks.add(track2)
-
+    private fun populateEmployee() {
         val employee = Employee(1, "John", "john@gmail.com", 30)
 
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                tracks.map { trackDao.insert(it) }
-                employeeDao.insert(employee)
+                try {
+                    employeeDao.getEmployee(1)
+                } catch (e: Exception) {
+                    employeeDao.insert(employee)
+                }
             }
         }
     }

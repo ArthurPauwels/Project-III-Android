@@ -12,12 +12,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.R
 import com.example.android.projectiii.challenge.ChallengeRecyclerViewAdapter
+import com.example.android.projectiii.challenge.ChallengeViewModel
 import com.example.android.projectiii.databinding.FragmentTrackBinding
 import com.example.android.projectiii.employee.EmployeeViewModel
+import org.koin.android.ext.android.get
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class TrackFragment : Fragment() {
-    private val trackViewModel: TrackViewModel by viewModel()
+    private lateinit var challengeViewModel: ChallengeViewModel
     private val employeeViewModel: EmployeeViewModel by viewModel()
     private lateinit var binding: FragmentTrackBinding
 
@@ -27,6 +31,8 @@ class TrackFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val args = TrackFragmentArgs.fromBundle(arguments!!)
+        challengeViewModel = getViewModel { parametersOf(args.trackId) }
+
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_track,
@@ -38,11 +44,8 @@ class TrackFragment : Fragment() {
         binding.employeeViewModel = employeeViewModel
 
         val adapter = ChallengeRecyclerViewAdapter(employeeViewModel)
-        trackViewModel.trackList.observe(this, Observer { listTracks ->
-            val t = listTracks.find { t -> t.id == args.trackId }
-            if (t !== null) {
-                adapter.submitList(t.getIncompleteChallenges())
-            }
+        challengeViewModel.challengeList.observe(this, Observer { challengeList ->
+            adapter.submitList(challengeList)
 
             binding.setClickListener {
                 it.findNavController().navigate(

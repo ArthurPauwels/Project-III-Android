@@ -1,38 +1,61 @@
 package com.example.android.projectiii.track
 
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 import androidx.room.TypeConverters
 import com.example.android.projectiii.challenge.Challenge
 
 @Entity(tableName = "tracks")
 @TypeConverters(TrackConverters::class)
 data class Track(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L,
+    @PrimaryKey
+    @ColumnInfo(name="trackId")
+    var _id: String,
     var name: String,
+    var expert: String,
     var challenges: List<Challenge>,
-    var currentChallenge: Long = 0L
+    var currentChallenge: String = ""
 ) {
-    fun test(): Challenge {
-        if (currentChallenge.toInt() >= challenges.size) {
-            return challenges.last()
+    fun countUndoneChallenge (): Int {
+        var undone = 0
+
+        for (challenge in challenges) {
+            if (!challenge.isDone) {
+                undone += 1
+            }
         }
-        return challenges[currentChallenge.toInt()]
+
+        return undone
     }
 
-    fun completeChallenge() {
-        challenges[currentChallenge.toInt()].complete()
-        if (currentChallenge.toInt() < challenges.size) {
-            currentChallenge += 1
+    fun getFirstUndone(): Challenge? {
+        for (challenge in challenges) {
+            if (!challenge.isDone) {
+                return challenge
+            }
         }
+        return null
     }
 
-    fun getIncompleteChallenges(): List<Challenge> {
-        return challenges.filter { c -> !c.isDone }
+    fun completeCurrentChallenge() {
+        for (challenge in challenges) {
+            if (!challenge.isDone) {
+                challenge.isDone = true
+                return
+            }
+        }
     }
 
     fun isComplete(): Boolean {
-        return challenges.last().isDone
+        val nbUndone = countUndoneChallenge()
+
+        if (nbUndone == 0) {
+            return true
+        }
+
+        return false
     }
 }

@@ -1,6 +1,7 @@
 package com.example.android.projectiii.track
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +41,24 @@ class TracksListFragment : Fragment() {
             adapter.submitList(listTracks)
         })
         trackViewModel.isUpdated.observe(this, Observer { updated ->
-            adapter.notifyDataSetChanged()
+            if (trackViewModel.trackList.value != null) {
+                var newTrackList = mutableListOf<Track>()
+
+                for (track in (trackViewModel.trackList.value as List<Track>)) {
+                    if (!track.isComplete()) {
+                        newTrackList.add(track)
+                    }
+                }
+
+                Log.d("CHECK2", "HERE")
+                Log.d("CHECK2", (trackViewModel.trackList.value as List<Track>).size.toString())
+                Log.d("CHECK2", newTrackList.size.toString())
+                if ((trackViewModel.trackList.value as List<Track>).size == newTrackList.size) {
+                    adapter.notifyDataSetChanged()
+                } else {
+                    adapter.submitList(newTrackList)
+                }
+            }
         })
         employeeViewModel.isUpdated.observe(this, Observer { isUpdated ->
             binding.invalidateAll()

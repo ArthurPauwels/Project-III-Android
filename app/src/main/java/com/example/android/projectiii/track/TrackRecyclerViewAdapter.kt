@@ -1,5 +1,6 @@
 package com.example.android.projectiii.track
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -17,7 +18,9 @@ class TrackRecyclerViewAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val track = getItem(position)
 
-        (holder as ViewHolder).bind(track, employeeViewModel)
+        if (track.countUndoneChallenge() > 0) {
+            (holder as ViewHolder).bind(track, employeeViewModel)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -38,23 +41,23 @@ class TrackRecyclerViewAdapter(
                 binding.item2?.let { track ->
                     if (!track.isComplete()) {
                         it.findNavController().navigate(
-                            TracksListFragmentDirections.actionCurrentTracksToCurrentTrack(track.id)
+                            TracksListFragmentDirections.actionCurrentTracksToCurrentTrack(track._id)
                         )
                     }
                 }
             }
             binding.setCbClickListener {
                 binding.item?.let { chall ->
-                    employeeViewModel.addCoins(chall.coins)
+                    employeeViewModel.addCoins(chall.reward)
                 }
                 binding.item2?.let { track ->
-                    trackViewModel.completeChallenge(track.id)
+                    trackViewModel.completeChallenge(track._id)
                 }
             }
         }
 
         fun bind(item: Track, employeeViewModel: EmployeeViewModel) {
-            binding.item = item.test()
+            binding.item = item.getFirstUndone()
             binding.item2 = item
             binding.employeeViewModel = employeeViewModel
             binding.executePendingBindings()
@@ -64,7 +67,7 @@ class TrackRecyclerViewAdapter(
 
 private class TrackDiffCallback : DiffUtil.ItemCallback<Track>() {
     override fun areItemsTheSame(oldItem: Track, newItem: Track): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem._id == newItem._id
     }
 
     override fun areContentsTheSame(oldItem: Track, newItem: Track): Boolean {

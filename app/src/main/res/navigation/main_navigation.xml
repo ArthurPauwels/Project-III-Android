@@ -18,7 +18,7 @@
         android:label="TrackFragment">
         <argument
             android:name="trackId"
-            app:argType="long" />
+            app:argType="string" />
         <action
             android:id="@+id/action_current_track_to_expertFragment"
             app:destination="@id/expertFragment" />

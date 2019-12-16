@@ -1,11 +1,15 @@
 package com.example.android.projectiii.modules
 
 import android.content.Context
+import android.net.ConnectivityManager
+import com.example.android.projectiii.challenge.ChallengeViewModel
 import com.example.android.projectiii.database.EmployeeDao
 import com.example.android.projectiii.database.ProjectDatabase
 import com.example.android.projectiii.database.TrackDao
 import com.example.android.projectiii.employee.EmployeeRepository
 import com.example.android.projectiii.employee.EmployeeViewModel
+import com.example.android.projectiii.track.TrackApi
+import com.example.android.projectiii.track.TrackApiService
 import com.example.android.projectiii.track.TrackRepository
 import com.example.android.projectiii.track.TrackViewModel
 import org.koin.android.ext.koin.androidContext
@@ -17,10 +21,14 @@ val mainModule = module {
     single { createDatabase(androidContext()) }
     single { createEmployeeDao(get()) }
     single { createTrackDao(get()) }
-    single { createTrackRepository(get()) }
+    single { createTrackRepository(get(), get(), get()) }
     single { createEmployeeRepository(get()) }
+    single { createTrackApi() }
+    single { createTrackApiService(get()) }
+    single { createConnectivityManager(androidContext()) }
     viewModel { TrackViewModel(get()) }
     viewModel { EmployeeViewModel(get()) }
+    viewModel { (id: String) -> ChallengeViewModel(get(), id) }
 }
 
 fun createDatabase(context: Context): ProjectDatabase {
@@ -35,10 +43,23 @@ fun createTrackDao(projectDatabase: ProjectDatabase): TrackDao {
     return projectDatabase.trackDao
 }
 
-fun createTrackRepository(trackDao: TrackDao): TrackRepository {
-    return TrackRepository(trackDao)
+fun createTrackApi (): TrackApi {
+    return TrackApi().init()
+}
+
+fun createTrackApiService(trackApi: TrackApi): TrackApiService {
+    return trackApi.getRetrofitService()
+}
+
+fun createTrackRepository(trackDao: TrackDao, trackApiService: TrackApiService, connectivityManager: ConnectivityManager): TrackRepository {
+    return TrackRepository(trackDao, trackApiService, connectivityManager)
 }
 
 fun createEmployeeRepository(employeeDao: EmployeeDao): EmployeeRepository {
     return EmployeeRepository(employeeDao)
 }
+
+fun createConnectivityManager(context: Context): ConnectivityManager {
+    return context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+}
+

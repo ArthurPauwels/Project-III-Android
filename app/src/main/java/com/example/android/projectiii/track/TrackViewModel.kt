@@ -19,12 +19,13 @@ class TrackViewModel(private val trackRepository: TrackRepository) : ViewModel()
         }
     }
 
-    fun completeChallenge(trackId: Long) {
+    fun completeChallenge(trackId: String) {
         _tracks.value?.let {
-            it[it.indexOfFirst { t -> t.id == trackId }].completeChallenge()
+            it[it.indexOfFirst { t -> t._id == trackId }].completeCurrentChallenge()
             isUpdated.value = true
             viewModelScope.launch {
                 trackRepository.updateTracks(it)
+                _tracks.value = trackRepository.getUndoneChallenge()
             }
         }
     }

@@ -45,7 +45,7 @@ class ChallengeRecyclerViewAdapter(private val employeeViewModel: EmployeeViewMo
 
 private class ChallengeDiffCallback : DiffUtil.ItemCallback<Challenge>() {
     override fun areItemsTheSame(oldItem: Challenge, newItem: Challenge): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem._id == newItem._id
     }
 
     override fun areContentsTheSame(oldItem: Challenge, newItem: Challenge): Boolean {
