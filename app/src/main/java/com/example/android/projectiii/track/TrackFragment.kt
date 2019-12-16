@@ -7,17 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.R
 import com.example.android.projectiii.challenge.ChallengeRecyclerViewAdapter
-import com.example.android.projectiii.database.ProjectDatabase
 import com.example.android.projectiii.databinding.FragmentTrackBinding
-import com.example.android.projectiii.employee.EmployeeRepository
 import com.example.android.projectiii.employee.EmployeeViewModel
-import com.example.android.projectiii.employee.EmployeeViewModelFactory
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TrackFragment : Fragment() {

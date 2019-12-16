@@ -7,15 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.R
-import com.example.android.projectiii.database.ProjectDatabase
 import com.example.android.projectiii.databinding.FragmentTracksBinding
-import com.example.android.projectiii.employee.EmployeeRepository
 import com.example.android.projectiii.employee.EmployeeViewModel
-import com.example.android.projectiii.employee.EmployeeViewModelFactory
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TracksListFragment : Fragment() {
@@ -24,7 +20,8 @@ class TracksListFragment : Fragment() {
     private lateinit var binding: FragmentTracksBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(

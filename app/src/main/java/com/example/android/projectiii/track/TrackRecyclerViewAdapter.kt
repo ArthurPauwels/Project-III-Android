@@ -24,8 +24,7 @@ class TrackRecyclerViewAdapter(
         return ViewHolder(
             TrackCardBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
-            )
-            , employeeViewModel, trackViewModel
+            ), employeeViewModel, trackViewModel
         )
     }
 

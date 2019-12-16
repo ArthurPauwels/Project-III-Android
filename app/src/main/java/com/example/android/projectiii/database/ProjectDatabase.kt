@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.android.projectiii.R
-import com.example.android.projectiii.track.Track
 import com.example.android.projectiii.challenge.Challenge
 import com.example.android.projectiii.employee.Employee
+import com.example.android.projectiii.track.Track
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -135,7 +135,6 @@ abstract class ProjectDatabase : RoomDatabase() {
         val track2 = Track(2, "Eat good.", cl2, 1)
         tracks.add(track1)
         tracks.add(track2)
-
 
         val employee = Employee(1, "John", "john@gmail.com", 30)
 

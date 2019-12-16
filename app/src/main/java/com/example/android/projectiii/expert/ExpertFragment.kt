@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.android.projectiii.R
 import com.example.android.projectiii.databinding.FragmentExpertBinding
 
-class ExpertFragment:Fragment() {
+class ExpertFragment : Fragment() {
     private lateinit var binding: FragmentExpertBinding
 
     override fun onCreateView(

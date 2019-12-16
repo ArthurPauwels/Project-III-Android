@@ -23,22 +23,22 @@ val mainModule = module {
     viewModel { EmployeeViewModel(get()) }
 }
 
-fun createDatabase (context: Context) : ProjectDatabase {
+fun createDatabase(context: Context): ProjectDatabase {
     return ProjectDatabase.getInstance(context)
 }
 
-fun createEmployeeDao (projectDatabase: ProjectDatabase) : EmployeeDao {
+fun createEmployeeDao(projectDatabase: ProjectDatabase): EmployeeDao {
     return projectDatabase.employeeDao
 }
 
-fun createTrackDao (projectDatabase: ProjectDatabase) : TrackDao {
+fun createTrackDao(projectDatabase: ProjectDatabase): TrackDao {
     return projectDatabase.trackDao
 }
 
-fun createTrackRepository (trackDao: TrackDao) : TrackRepository {
+fun createTrackRepository(trackDao: TrackDao): TrackRepository {
     return TrackRepository(trackDao)
 }
 
-fun createEmployeeRepository (employeeDao: EmployeeDao) : EmployeeRepository {
+fun createEmployeeRepository(employeeDao: EmployeeDao): EmployeeRepository {
     return EmployeeRepository(employeeDao)
 }

@@ -1,20 +1,13 @@
 package com.example.android.projectiii
 
-import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.android.projectiii.track.TracksListFragment
-import com.example.android.projectiii.databinding.FragmentTracksBinding
-
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 import org.mockito.Mockito.mock
-
 
 /**
  * Instrumented test, which will execute on an Android device.
