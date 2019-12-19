@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -30,11 +30,11 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:onClick="@{clickListener}"
             app:cardBackgroundColor="#e5e5e5"
             app:cardCornerRadius="15dp"
-            card_view:cardUseCompatPadding="true"
-            android:onClick="@{clickListener}"
-            card_view:cardElevation="2dp">
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -46,12 +46,12 @@
                     android:layout_height="65dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    tools:src="@drawable/brain"
                     android:src="@{item.image}"
                     app:civ_border_color="#FF46CE32"
                     app:civ_border_width="5dp"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/brain"
                     tools:srcCompat="@tools:sample/avatars" />
 
 
@@ -59,13 +59,13 @@
                     android:id="@+id/challengeDescription"
                     android:layout_width="350dp"
                     android:layout_height="137dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:background="#f2f2f2"
                     android:padding="5dp"
-                    android:visibility="@{item.isOpen ? View.VISIBLE : View.GONE}"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
                     android:text="@{item.description}"
+                    android:visibility="@{item.isOpen ? View.VISIBLE : View.GONE}"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toBottomOf="@+id/challengeImage"
@@ -81,10 +81,10 @@
                     android:layout_height="24dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{item.name}"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:layout_marginEnd="16dp"
-                    android:text="@{item.title}"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toEndOf="@+id/challengeImage"
                     card_view:layout_constraintTop_toTopOf="parent"
@@ -122,7 +122,8 @@
                         android:src="@drawable/coins"
                         card_view:layout_constraintBottom_toBottomOf="parent"
                         card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent" />
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/coins" />
 
                     <TextView
                         android:id="@+id/challengeCoins"
@@ -130,8 +131,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="5dp"
+                        android:text="@{String.valueOf(item.reward)}"
                         android:textColor="#565656"
-                        android:text="@{String.valueOf(item.coins)}"
                         card_view:layout_constraintBottom_toBottomOf="parent"
                         card_view:layout_constraintEnd_toEndOf="parent"
                         card_view:layout_constraintHorizontal_bias="1.0"
@@ -140,7 +141,7 @@
                         tools:text="25" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-                
+
                 <ImageView
                     android:id="@+id/challengeLockIcon"
                     android:layout_width="50dp"
@@ -150,7 +151,8 @@
                     card_view:layout_constraintBottom_toBottomOf="@+id/challengeCoinBox"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintHorizontal_bias="0.973"
-                    card_view:layout_constraintStart_toEndOf="@+id/challengeCoinBox" />
+                    card_view:layout_constraintStart_toEndOf="@+id/challengeCoinBox"
+                    android:contentDescription="@string/locked" />
 
                 <Space
                     android:layout_width="match_parent"

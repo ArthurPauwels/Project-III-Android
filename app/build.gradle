@@ -41,26 +41,54 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc01"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
 
     // Lifecycles
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit: $version_retrofit"
+
+    // OKHTTP
+    implementation "com.squareup.okhttp3:okhttp:4.2.1"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
+
+    // Moshi for converting JSON
+    implementation "com.squareup.moshi:moshi:$version_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
     // Test
     testImplementation "junit:junit:$version_junit"
-    androidTestImplementation "androidx.test.ext:junit:$test_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
     testImplementation "io.mockk:mockk:$version_mockk"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_version"
-    testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
     testImplementation "org.mockito:mockito-core:3.1.0"
+
+    // Android Test
     androidTestImplementation "org.mockito:mockito-android:3.1.0"
-    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+    androidTestImplementation "androidx.test.ext:junit:$test_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "androidx.test:runner:$test_version"
+    androidTestImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+    androidTestImplementation "androidx.test:rules:1.1.0"
+    androidTestImplementation "androidx.fragment:fragment-testing:$fragment_version"
 
     // Android components
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     implementation "androidx.cardview:cardview:$cardview_version"
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
     implementation "de.hdodenhof:circleimageview:$circleimageview_version"
+
+    // Koin for Kotlin
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    // Koin Extended & experimental features
+    implementation "org.koin:koin-core-ext:$koin_version"
+
+    // Koin for Unit tests
+    testImplementation "org.koin:koin-test:$koin_version"
 
     // Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_version"

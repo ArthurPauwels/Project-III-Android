@@ -8,37 +8,63 @@
         <variable
             name="employeeViewModel"
             type="com.example.android.projectiii.employee.EmployeeViewModel" />
+
         <variable
-            name="trackViewModel"
-            type="com.example.android.projectiii.track.TrackViewModel" />
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingTop="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/coinBox"
+            android:id="@+id/expert"
+            android:layout_width="48dp"
+            android:layout_height="36dp"
+            android:background="@drawable/rounded_challenge_coins"
+            android:foregroundGravity="center_vertical"
+            android:onClick="@{clickListener}"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/challengeCoinBox"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/expertImage"
+                android:layout_width="32dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/expert_icon"
+                android:src="@drawable/expert"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/challengeCoinBox"
             android:layout_width="89dp"
             android:layout_height="36dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
             android:background="@drawable/rounded_challenge_coins"
             android:foregroundGravity="center_vertical"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/coinImage"
+                android:id="@+id/challengeCoinImage"
                 android:layout_width="32dp"
                 android:layout_height="29dp"
                 android:layout_marginStart="8dp"
+                android:contentDescription="@string/coins"
                 android:src="@drawable/coins"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/coins" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/allUserCoins"
@@ -49,19 +75,21 @@
                 android:textColor="#565656"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/coinImage"
+                app:layout_constraintStart_toEndOf="@+id/challengeCoinImage"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="25" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/current_tracks_list"
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="52dp"
-            app:layout_constraintTop_toBottomOf="@+id/coinBox" />
+            android:layout_width="match_parent"
+            android:id="@+id/current_challenges_list"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="41dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/expert" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>
