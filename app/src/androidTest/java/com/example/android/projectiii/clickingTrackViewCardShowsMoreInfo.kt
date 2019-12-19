@@ -7,7 +7,6 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withClassName
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.filters.LargeTest
@@ -15,7 +14,6 @@ import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
@@ -25,68 +23,60 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class checkingBoxGivesReward {
+class clickingTrackViewCardShowsMoreInfo {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun checkingBoxGivesReward() {
+    fun clickingTrackViewCardShowsMoreInfo() {
 
         //time for DB to load
         Thread.sleep(5000)
 
-        val textView = onView(
+        val cardView = onView(
             allOf(
-                withId(R.id.allUserCoins), withText("0"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.coinBox),
-                        childAtPosition(
-                            IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("0")))
-
-        val appCompatCheckBox = onView(
-            allOf(
-                withId(R.id.challengeCheckBox),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("androidx.cardview.widget.CardView")),
+                        withId(R.id.current_tracks_list),
                         0
                     ),
-                    4
+                    0
                 ),
                 isDisplayed()
             )
         )
-        appCompatCheckBox.perform(click())
+        cardView.perform(click())
 
-        val textView2 = onView(
+        val cardView2 = onView(
             allOf(
-                withId(R.id.allUserCoins), withText("0"),
                 childAtPosition(
-                    allOf(
-                        withId(R.id.coinBox),
-                        childAtPosition(
-                            IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
-                            0
-                        )
+                    childAtPosition(
+                        withId(R.id.current_challenges_list),
+                        0
                     ),
-                    1
+                    0
                 ),
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("20")))
+        cardView2.perform(click())
+
+        val textView = onView(
+            allOf(
+                withId(R.id.challengeDescription), withText("Eat a lot"),
+                childAtPosition(
+                    childAtPosition(
+                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
+                        0
+                    ),
+                    3
+                ),
+                isDisplayed()
+            )
+        )
+        textView.check(matches(isDisplayed()))
     }
 
     private fun childAtPosition(

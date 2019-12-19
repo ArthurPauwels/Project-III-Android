@@ -30,6 +30,10 @@ class clickThroughToExpert {
 
     @Test
     fun clickThroughToExpert() {
+
+        //time for DB to load
+        Thread.sleep(5000)
+
         val cardView = onView(
             allOf(
                 childAtPosition(
