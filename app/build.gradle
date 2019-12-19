@@ -70,7 +70,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
     androidTestImplementation "androidx.test:runner:$test_version"
     androidTestImplementation "androidx.arch.core:core-testing:$lifecycle_version"
-    androidTestImplementation "androidx.test:rules:1.1.0"
+    androidTestImplementation 'androidx.test:rules:1.2.0-beta01'
     androidTestImplementation "androidx.fragment:fragment-testing:$fragment_version"
 
     // Android components
