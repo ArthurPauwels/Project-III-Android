@@ -8,6 +8,8 @@ import com.example.android.projectiii.database.ProjectDatabase
 import com.example.android.projectiii.database.TrackDao
 import com.example.android.projectiii.employee.EmployeeRepository
 import com.example.android.projectiii.employee.EmployeeViewModel
+import com.example.android.projectiii.shop.ShopRepository
+import com.example.android.projectiii.shop.ShopViewModel
 import com.example.android.projectiii.track.TrackApi
 import com.example.android.projectiii.track.TrackApiService
 import com.example.android.projectiii.track.TrackRepository
@@ -23,12 +25,14 @@ val mainModule = module {
     single { createTrackDao(get()) }
     single { createTrackRepository(get(), get(), get()) }
     single { createEmployeeRepository(get()) }
+    single { createShopRepository() }
     single { createTrackApi() }
     single { createTrackApiService(get()) }
     single { createConnectivityManager(androidContext()) }
     viewModel { TrackViewModel(get()) }
     viewModel { EmployeeViewModel(get()) }
     viewModel { (id: String) -> ChallengeViewModel(get(), id) }
+    viewModel { ShopViewModel(get()) }
 }
 
 fun createDatabase(context: Context): ProjectDatabase {
@@ -53,6 +57,10 @@ fun createTrackApiService(trackApi: TrackApi): TrackApiService {
 
 fun createTrackRepository(trackDao: TrackDao, trackApiService: TrackApiService, connectivityManager: ConnectivityManager): TrackRepository {
     return TrackRepository(trackDao, trackApiService, connectivityManager)
+}
+
+fun createShopRepository(): ShopRepository {
+    return ShopRepository()
 }
 
 fun createEmployeeRepository(employeeDao: EmployeeDao): EmployeeRepository {

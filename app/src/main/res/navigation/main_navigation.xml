@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_current_tracks_to_current_track"
             app:destination="@id/current_track" />
+        <action
+            android:id="@+id/action_current_tracks_to_shopFragment"
+            app:destination="@id/shopFragment" />
     </fragment>
     <fragment
         android:id="@+id/current_track"
@@ -37,4 +40,8 @@
             android:name="email"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/shopFragment"
+        android:name="com.example.android.projectiii.shop.ShopFragment"
+        android:label="ShopFragment" />
 </navigation>
