@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.projectiii.R
@@ -68,6 +69,12 @@ class TracksListFragment : Fragment() {
         binding.currentTracksList.layoutManager =
             LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.currentTracksList.adapter = adapter
+
+        binding.coinBox.setOnClickListener{
+            it.findNavController().navigate(
+                TracksListFragmentDirections.actionCurrentTracksToShopFragment()
+            )
+        }
 
         return binding.root
     }
